@@ -105,10 +105,15 @@ o prie 0 “*” simbolius
 console.log('5 uzduotis')
 
 for (let i = 0; i < 3; i++) {
-    console.log(rand(-10, 10));
+    let num = rand(-10, 10)
+    if (num === 0) {
+        console.log(`*${num}*`); 
+    } else if (num < 0) {
+        console.log(`+${num}+`); 
+    } else {
+        console.log(`-${num}-`); 
+    }
 }
-
-
 
 /*
 6 uzduotis
@@ -121,6 +126,20 @@ Parašykite skriptą, kuri skaičiuos žvakių kainą ir atspausdintų atsakymą
 
 console.log('6 uzduotis')
 
+const priceForOneUnit = 1;
+const quantity = rand(5, 3000);
+const totalPrice = quantity * priceForOneUnit;
+
+if (totalPrice >= 1000) {
+    let newPrice = totalPrice * 0.97;
+    console.log(`${quantity} candles for ${newPrice.toFixed(2)} Eur`)
+} else if (totalPrice >= 2000) {
+    let newPrice = totalPrice * 0.96;
+    console.log(`${quantity} candles for ${newPrice.toFixed(2)} Eur`)
+} else {
+    console.log(`${quantity} candles for ${totalPrice} Eur`)
+}
+
 /*
 7 uzduotis
 
@@ -132,3 +151,23 @@ Abu vidurkius atspausdinkite su console.log()
 */
 
 console.log('7 uzduotis')
+
+let averageCount = 0;
+let sumForAverageWithout = 0;
+let numbersInAverageWithout = 0;
+
+for (let i = 0; i < 3; i++) {
+    let num = rand(0, 100)
+    console.log(num);
+    if (num > 10 && num < 90) {
+        sumForAverageWithout = sumForAverageWithout + num;
+        numbersInAverageWithout++;
+    }
+    averageCount = averageCount + num;
+}
+
+const strangeAverage = sumForAverageWithout / numbersInAverageWithout;
+const average = averageCount / 3;
+
+console.log(strangeAverage);
+console.log(average);
