@@ -53,11 +53,11 @@ Parašykite skriptą, kuris nustatytų, ar galima sudaryti trikampį ir atsakym�
 
 console.log('3 uzduotis')
 
-const q = rand(0, 10);
-const w = rand(0, 10);
-const e = rand(0, 10);
+const q = rand(1, 10);
+const w = rand(1, 10);
+const e = rand(1, 10);
 
-
+console.log('Visada bus true')
 
 /*
 4 uzduotis
@@ -67,6 +67,30 @@ Suskaičiuokite kiek yra nulių, vienetų ir dvejetų. Rezultatus atspauzdinkite
 */
 
 console.log('4 uzduotis')
+
+
+const array = [];
+
+for (let i = 0; i < 4; i++) {
+    array.push(rand(0, 2));
+}
+
+let count0 = 0;
+let count1 = 0;
+let count2 = 0;
+
+for (let i = 0; i < array.length; i++) {
+    if (array[i] === 0) {
+        count0 += 1;
+    } else if (array[i] === 1) {
+        count1 += 1;
+    } else {
+        count2 += 1;
+    }
+}
+console.log(count0);
+console.log(count1);
+console.log(count2);
 
 /*
 5 uzduotis
@@ -79,6 +103,12 @@ o prie 0 “*” simbolius
 */
 
 console.log('5 uzduotis')
+
+for (let i = 0; i < 3; i++) {
+    console.log(rand(-10, 10));
+}
+
+
 
 /*
 6 uzduotis
