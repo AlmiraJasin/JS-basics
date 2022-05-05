@@ -15,8 +15,8 @@ Atspausdinkite rezultatą naudodami console.log()
 
 console.log('1 uzduotis')
 
-let a = rand(0, 4);
-let b = rand(0, 4);
+const a = rand(0, 4);
+const b = rand(0, 4);
 
 if (a > b) {
     console.log(a / b);
@@ -34,7 +34,15 @@ Raskite ir su console.log() atspausdinkite kintąmąjį turintį vidurinę reik�
 
 console.log('2 uzduotis')
 
+const x = rand(0, 25);
+const y = rand(0, 25);
+const z = rand(0, 25);
 
+let arr = [x, y, z];
+let newArr = arr.sort(function(a, b) {
+    return a - b;
+});
+console.log(newArr[1]);
 
 /*
 3 uzduotis
@@ -44,6 +52,11 @@ Parašykite skriptą, kuris nustatytų, ar galima sudaryti trikampį ir atsakym�
 */
 
 console.log('3 uzduotis')
+
+const q = rand(0, 10);
+const w = rand(0, 10);
+const e = rand(0, 10);
+
 
 
 /*
