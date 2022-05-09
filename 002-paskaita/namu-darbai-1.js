@@ -3,30 +3,55 @@
 
 console.log('1 uzduotis');
 
+for (let i = 0; i < 5; i++) {
+    console.log('Labas');
+}
+
 /* console.log’e, naudojant ciklą penkiose eilutėse atspausdinti skaičius 0 1 2 3 4 (vienas skaičius vienoje eilutėje);
  */
 
 console.log('2 uzduotis');
+
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
 
 /* console.log’e, naudojant ciklą penkiose eilutėse atspausdinti skaičius 0 10 20 30 40 (vienas skaičius vienoje eilutėje);
  */
 
 console.log('3 uzduotis');
 
+for (let i = 0; i < 5; i++) {
+    console.log(i * 10);
+}
+
 /* console.log’e, naudojant ciklą penkiose eilutėse atspausdinti skaičius 49 50 51 52 53 (vienas skaičius vienoje eilutėje);
  */
 
 console.log('4 uzduotis');
+
+for (let i = 49; i < 54; i++) {
+    console.log(i);
+}
 
 /* console.log’e, naudojant ciklą penkiose eilutėse atspausdinti skaičius 4 3 2 1 0 (vienas skaičius vienoje eilutėje);
  */
 
 console.log('5 uzduotis');
 
+for (let i = 4; i >= 0; i--) {
+    console.log(i);
+}
+
 /* console.log’e, naudojant ciklą penkiose eilutėse atspausdinti skaičius 0 2 4 6 8 (vienas skaičius vienoje eilutėje, daugybos konsolėje nenaudoti!, if’ų nenaudoti, ciklas for);
  */
 
 console.log('6 uzduotis');
+
+for (let i = 0; i <= 8; i++) {
+    let result = 0
+    console.log(i);
+}
 
 /* console.log’e, naudojant ciklą penkiose eilutėse atspausdinti skirtingus atsitiktinius skaičius nuo 0 iki 10 (vienas skaičius vienoje eilutėje);
  */
