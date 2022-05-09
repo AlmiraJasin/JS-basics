@@ -1,4 +1,4 @@
-function rand(min, max) {
+export function rand(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -57,7 +57,8 @@ const q = rand(1, 10);
 const w = rand(1, 10);
 const e = rand(1, 10);
 
-console.log('Visada bus true')
+
+
 
 /*
 4 uzduotis

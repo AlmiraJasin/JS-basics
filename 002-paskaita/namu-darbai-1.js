@@ -1,3 +1,5 @@
+import { rand } from '../001-paskaita/namu-darbai.js';
+
 /* console.log’e, naudojant ciklą atspausdinti penkias eilutes ‘Labas’;
  */
 
@@ -48,9 +50,9 @@ for (let i = 4; i >= 0; i--) {
 
 console.log('6 uzduotis');
 
-for (let i = 0; i <= 8; i++) {
-    let result = 0
-    console.log(i);
+for (let i = 0; i < 5; i++) {
+    let result = i * 2;
+    console.log(result);
 }
 
 /* console.log’e, naudojant ciklą penkiose eilutėse atspausdinti skirtingus atsitiktinius skaičius nuo 0 iki 10 (vienas skaičius vienoje eilutėje);
@@ -58,10 +60,24 @@ for (let i = 0; i <= 8; i++) {
 
 console.log('7 uzduotis');
 
+for (let i = 0; i < 5; i++) {
+    let res = rand(0, 10)
+    console.log(res);
+}
+
 /* console.log’e, naudojant ciklą atspausdinti skirtingus atsitiktinius skaičius nuo 0 iki 10 (vienas skaičius vienoje eilutėje). Paskutinis atspausdintas skaičius turi būti 5;
  */
 
 console.log('8 uzduotis');
+
+for (let i = 0; i < 5; i++) {
+    let res = rand(0, 10)
+    console.log(res);
+    if (res === 5) {
+        break;
+    }
+}
+
 
 /* console.log’e, naudojant ciklą atspausdinti atsitiktinius skirtingus skaičius nuo 0 iki 10 (vienas skaičius vienoje eilutėje). Ciklas turi pasibaigti tada, kai atsitiktinių skaičių suma viršija 100;
  */
