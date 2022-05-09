@@ -172,3 +172,5 @@ const average = averageCount / 3;
 
 console.log(strangeAverage);
 console.log(average);
+
+// Bugas, kad kartais visi skaiciai neieis i count ir gausis dalyba is nulio - parasyti if, kad mestu vidurkis = 0
