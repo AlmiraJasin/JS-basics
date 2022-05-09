@@ -1,4 +1,4 @@
-import { rand } from "../001-paskaita/namu-darbai";
+import { rand } from "../001-paskaita/namu-darbai.js";
 
 // ciklas while skirtas skaiciavimams nuo 0 iki Infinity;
 // ciklas do...While skirtas skaiciavimams nuo 1 iki Infinity;
@@ -64,6 +64,10 @@ let kotletasSuvalgytasPer = 0;
 
 console.log(kotletasSuvalgytasPer);*/
 
+let r;
 do {
+    r = rand(0,4);
     kotletasSuvalgytasPer++;
-} while(rand(0,4))
+} while(r)
+
+console.log(kotletasSuvalgytasPer);
