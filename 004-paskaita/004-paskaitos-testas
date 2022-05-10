@@ -1,0 +1,21 @@
+// Kiek kartu kate apsisuks aplink nama, kol pagaus 20+ ziurkiu?
+// kate sukasi aplink nama ir gaudo ziurkes, nuo 3 iki 5 per viena apsisukima
+
+function rand(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+let apsisukimai = 0;
+let pagautosZiurkes = 0;
+
+while (pagautosZiurkes < 20) {
+    let ziurkesTamApsisukimui = rand(3, 5);
+    pagautosZiurkes += ziurkesTamApsisukimui
+    apsisukimai++;
+}
+
+console.log(apsisukimai);
+
+
