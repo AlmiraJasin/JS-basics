@@ -1,58 +1,132 @@
+function rand(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 /* Sukurti masyvą (piniginę), kurio ilgis yra atsitiktinis nuo 10 iki 30, o reikšmės atsitiktiniai skaičiai nuo 0 iki 10 (pinigai);
  */
 
 console.log('1 uzdavinys');
 
+let wallet = [];
+const walletSize = rand(10, 30);
+for (let i = 0; i < walletSize; i++) {
+    let money = rand(0, 10);
+    wallet.push(money);
+}
+console.log(wallet);
 
 /* Naudojant ciklą apskaičiuoti masyvo iš 1 uždavinio reikšmių (pinigų esančių piniginėje) sumą;
  */
 
 console.log('2 uzdavinys');
 
+let totalMoney = 0;
+wallet.forEach(m => totalMoney += m);
+console.log(totalMoney);
+
 /* Naudojant ciklą apskaičiuoti masyvo iš 1 uždavinio popierinių pinigų (skaičių didesnių už 2 ) reikšmių sumą;
  */
 
 console.log('3 uzdavinys');
+
+let banknoteTotal = 0;
+wallet.forEach(m => {
+    if (m > 2) {
+    banknoteTotal += m};
+})
+console.log(banknoteTotal);
 
 /* Išleisti visus metalinius pinigus (reikšmes, kurios yra mažesnės arba lygios 2 padaryti lygias 0) iš 1 uždavinio;
  */
 
 console.log('4 uzdavinys');
 
+let newWallet = [];
+wallet.forEach(m => {
+    if (m > 2) {
+    newWallet.push(m)};
+})
+console.log(newWallet);
+
 /* Surasti didžiausią reikšmę 1 uždavinio masyve ir paskaičiuoti kiek tokių didžiausių reikšmių masyve yra;
  */
 
 console.log('5 uzdavinys');
+
+let newWalletForSort = [...wallet];
+const largestBanknote = newWalletForSort.sort((a, b) => b - a)[0];
+let largestBanknoteCount = 0;
+for (let i = 0; i < newWalletForSort.length; i++) {
+    if (newWalletForSort[i] === largestBanknote) {
+        largestBanknoteCount++;
+    }
+}
+console.log(largestBanknoteCount);
 
 /* Visus masyvo elementus, kurie yra lygūs 0, pakeisti į tų elementų indeksų (vietų, numerių) reikšmes;
  */
 
 console.log('6 uzdavinys');
 
+let newWalletNoNull = [...wallet];
+for (let i = 0; i < wallet.length; i++) {
+    if (newWalletNoNull[i] === 0) {
+        newWalletNoNull[i] = i;
+    }
+}
+console.log(newWalletNoNull);
+
 /* Į 1 uždavinio masyvą pridėti tiek naujų reikšmių (pinigų, atsitiktinių skaičių nuo 0 iki 10), kad masyvo ilgis būtų lygiai 30;
  */
 
 console.log('7 uzdavinys');
+
+let newWalletTo30 = [...wallet];
+while (newWalletTo30.length < 30) {
+    newWalletTo30.push(rand(0, 10));
+}
+console.log(newWalletTo30);
 
 /* Naudojant 1 uždavinio masyvą iš jo reikšmių sukurti dar du papildomus masyvus. Į vieną iš 1 uždavinio masyvo pridėti reikšmes mažesnes arba lygias 2 (monetas), o į kitą didesnes nei 2 (popierinius pinigus);
  */
 
 console.log('8 uzdavinys');
 
+let coins = [];
+let banknotes = [];
+
+wallet.forEach(m => (m > 2) ? banknotes.push(m) : coins.push(m));
+
+console.log(coins);
+console.log(banknotes);
+
+
 /* Sukurti masyvą (piniginę su dviem skyreliais) iš dviejų elementų, kurio pirmas elementas būtų masyvas iš 8 uždavinio su monetom, o antras elementas masyvas iš 8 uždavinio su popieriniais pinigais;
  */
 
 console.log('9 uzdavinys');
+
+let newWalletWithCompartments = [coins, banknotes];
+
+console.table(newWalletWithCompartments);
 
 /* Į 9 uždavinio masyvą, piniginę su dviem skyreliais, pridėti trečią skyrelį- masyvą su kortelėm: ['KIKA', 'Euro Vaistinė', 'Drogas', 'Ačiū', 'Lietuvos Geležinkeliai', 'Mano RIMI'];
  */
 
 console.log('10 uzdavinys');
 
+newWalletWithCompartments.push(['KIKA', 'Euro Vaistinė', 'Drogas', 'Ačiū', 'Lietuvos Geležinkeliai', 'Mano RIMI']);
+
+console.table(newWalletWithCompartments);
+
 /* Korteles skyrelyje sudėlioti (išrūšiuoti) pagal abėcėlę;
  */
 
 console.log('11 uzdavinys');
+
+
 
 /* Į kortelių skyrelį pridėti mokėjimo kortelių 'MasterCard', 'Visa' (su rand generuokite atsitiktines reikšmes 'MasterCard' arba 'Visa' ir rašykite į masyvą) iš skirtingų bankų tiek, kad skyrelis (masyvo ilgis) pasidarytų lygus 20;
  */
