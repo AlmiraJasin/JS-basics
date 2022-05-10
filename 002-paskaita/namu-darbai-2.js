@@ -14,10 +14,17 @@ function rand(min, max) {
 console.log('1 uzduotis');
 
 let randNumSum = 0;
+let randNumsStr = ' ';
+let randNumsStrWithSpaces = ' ';
 for (let i = 0; i < 3; i++) {
     let randNum = rand(5, 25);
     randNumSum += randNum;
-    console.log('a)', randNum, 'b)', randNumSum);
+    randNumsStr += randNum;
+    randNumsStrWithSpaces += randNum + ' ';
+    console.log('a) Skaicius:', randNum, 'Suma:', randNumSum);
+    console.log('b) String:', randNumsStr);
+    console.log('c) String with space:', randNumsStrWithSpaces);
+    console.log('d)');
 
 }
 
