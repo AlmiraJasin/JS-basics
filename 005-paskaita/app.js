@@ -18,5 +18,64 @@ for (let i = 0; i < n1.length; i++) {
   }
 }
 
-console.table(copy3);
-console.table(copy2);
+// for (const ja of n1) {
+//   console.log(ja);
+// }
+
+const ma = [rand(1, 3), rand(1, 3)];
+for (let i = 2; i < 10; i++) {
+  ma.push(ma[i - 1] + ma[i - 2]);
+}
+
+
+// console.table(copy3);
+console.table(ma);
+
+const kazkas = 'dsklfdvoi;dsfhvufdsvuilsfhidsiulvd';
+
+const namasSuKaminu = {
+  kaminas: 'yra 3metrai',
+  gyventojai: ["Petras", "Asilas", "Barsukas", "Kate"],
+  tas: kazkas
+};
+
+namasSuKaminu.animals = {cat: 'Murka', dog: 'Brisius'};
+
+namasSuKaminu.tas = 888;
+
+
+
+const namasSuKaminu2 = JSON.parse(JSON.stringify(namasSuKaminu));
+
+namasSuKaminu2.animals.cat = 'Kitas katinas';
+
+
+// const n4 = n1.slice(); // kopijavimas
+const n4 = [...n1]; // kopijavimas
+// n4.shift();
+
+// const a1 = {cat: 'Murka', dog: 'Brisius'};
+
+// const a2 = {...a1};
+
+
+console.log(namasSuKaminu, namasSuKaminu2);
+
+const map = new Map();
+
+map.set('Murka', 5);
+map.set('Pilkis', 8);
+map.set('Pukis', 4);
+
+map.set('Pilkis', 9);
+
+console.log(map.get('Pilkis'));
+// map.delete('Pilkis');
+
+const masmap = [...map];
+
+console.log(map.size);
+
+console.log(map);
+
+
