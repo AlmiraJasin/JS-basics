@@ -1,7 +1,20 @@
+function rand(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 /* Sugeneruokite masyvą iš 30 elementų (indeksai nuo 0 iki 29), kurių reikšmės yra atsitiktiniai skaičiai nuo 5 iki 25.
  */
 
 console.log('1 uzdavinys');
+
+let array = [];
+while (array.length < 30) {
+    let randNum = rand(0, 29);
+    array.push(randNum);
+}
+console.log(array);
 
 /* Naudodamiesi 1 uždavinio masyvu:
     a)  Suskaičiuokite kiek masyve yra reikšmių didesnių už 10;
@@ -16,10 +29,25 @@ console.log('1 uzdavinys');
 
 console.log('2 uzdavinys');
 
+let numbersOverTen = 0;
+array.forEach(i => {
+    if (i >= 10) {
+    numbersOverTen++;
+    }
+});
+console.log('a)', numbersOverTen);
+
+function bTask (array) {
+    array.sort((a, b) => a - b);
+    console.log(array);
+}
+
 /* Sugeneruokite masyvą, kurio reikšmės atsitiktinės raidės A, B, C ir D, o ilgis 200. Suskaičiuokite kiek yra kiekvienos raidės.
  */
 
 console.log('3 uzdavinys');
+
+
 
 /* Sugeneruokite 3 masyvus pagal 3 uždavinio sąlygą. Sudėkite masyvus, sudėdami atitinkamas reikšmes. Paskaičiuokite kiek unikalių (po vieną, nesikartojančių) reikšmių ir kiek unikalių kombinacijų gavote.
  */

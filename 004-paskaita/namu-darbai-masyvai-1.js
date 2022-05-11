@@ -170,17 +170,28 @@ console.log('Visa:', visaCount, 'MasterCard:', masterCount);
 
 console.log('14 uzdavinys');
 
-
+let lotteryCompartment = [];
+while (lotteryCompartment.length < 10) {
+    let lotteryTicket = rand(1000000000, 9999999999)
+    lotteryCompartment.push(lotteryTicket);
+}
+newWalletWithCompartments.push(lotteryCompartment);
+console.table(newWalletWithCompartments);
 
 /* Loterijos bilietų masyvą išrūšiuoti nuo didžiausio numerio iki mažiausio;
  */
 
 console.log('15 uzdavinys');
 
+newWalletWithCompartments[3].sort();
+console.table(newWalletWithCompartments);
+
 /* Į piniginės popierinių pinigų skyrelį įdėti 500 pinigų mažom kupiūrom ( generuoti atsitiktinius skaičius nuo 3 iki 10 ir dėti kaip naujus elementus, kol įdėta suma bus lygi 500);
  */
 
 console.log('16 uzdavinys');
+
+
 
 /* Patikrinti ar ką nors laimėjote. Bilieto numerius dalinkite iš 777 ir jeigu numeris išsidalins be liekanos - jūs laimėjote! Suskaičiuokite, kiek buvo laimingų bilietų.
  */ 
