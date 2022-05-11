@@ -126,22 +126,51 @@ console.table(newWalletWithCompartments);
 
 console.log('11 uzdavinys');
 
+let cardCompartment = ['KIKA', 'Euro Vaistinė', 'Drogas', 'Ačiū', 'Lietuvos Geležinkeliai', 'Mano RIMI'];
 
+cardCompartment.sort();
+
+console.log(cardCompartment);
 
 /* Į kortelių skyrelį pridėti mokėjimo kortelių 'MasterCard', 'Visa' (su rand generuokite atsitiktines reikšmes 'MasterCard' arba 'Visa' ir rašykite į masyvą) iš skirtingų bankų tiek, kad skyrelis (masyvo ilgis) pasidarytų lygus 20;
  */
 
 console.log('12 uzdavinys');
 
+while (cardCompartment.length < 30) {
+    let newCard = '';
+    const drawNewCard = rand(0, 1);
+    if (drawNewCard === 0) {
+        newCard = 'MasterCard';
+    } else {
+        newCard = 'Visa';
+    }
+    cardCompartment.push(newCard);
+}
+console.log(cardCompartment);
+
 /* Paskaičiuokite, kokio tipo kortelių ('MasterCard' arba 'Visa') yra daugiau;
  */
 
 console.log('13 uzdavinys');
 
+let visaCount = 0;
+let masterCount = 0;
+for (let i = 0; i < cardCompartment.length; i++){ 
+    if (cardCompartment[i] === 'Visa') {
+        visaCount++;
+    } else if (cardCompartment[i] === 'MasterCard') {
+        masterCount++;
+    }
+}
+console.log('Visa:', visaCount, 'MasterCard:', masterCount);
+
 /* Sukurkite masyve (piniginėje) ketvirtą elementą (skyrelį) į kurį įdėkite 10 loterijos bilietų, kurių numerius sugeneruokite atsitiktinai su rand funkcija nuo 1000000000 iki 9999999999;
  */
 
 console.log('14 uzdavinys');
+
+
 
 /* Loterijos bilietų masyvą išrūšiuoti nuo didžiausio numerio iki mažiausio;
  */
