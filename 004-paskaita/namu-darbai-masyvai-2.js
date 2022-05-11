@@ -29,6 +29,7 @@ console.log(array);
 
 console.log('2 uzdavinys');
 
+//    a)  Suskaičiuokite kiek masyve yra reikšmių didesnių už 10;
 let numbersOverTen = 0;
 array.forEach(i => {
     if (i >= 10) {
@@ -37,6 +38,7 @@ array.forEach(i => {
 });
 console.log('a)', numbersOverTen);
 
+//    b)  Raskite didžiausią masyvo reikšmę ir jos indeksą;
 let arrayCopy = [...array];
 function bTask (array) {
     arrayCopy.sort((a, b) => b - a);
@@ -45,6 +47,7 @@ function bTask (array) {
 let largestNumberPosition = array.indexOf(bTask(array));
 console.log('b)', 'Number:', bTask(array), 'Position:', largestNumberPosition);
 
+//    c)  Suskaičiuokite visų porinių (lyginių) indeksų reikšmių sumą;
 let sumOfEvenIndex = 0;
 for (let i = 0; i < array.length; i++) {
     if (i % 2 === 0) {
@@ -53,26 +56,41 @@ for (let i = 0; i < array.length; i++) {
 }
 console.log('c)', sumOfEvenIndex);
 
+//    d)  Sukurkite naują masyvą, kurio reikšmės yra 1 uždavinio masyvo reikšmes minus tos reikšmės indeksas;
 let arrayValuesMinusIndex = [];
 for (let i = 0; i < array.length; i++) {
     arrayValuesMinusIndex.push(array[i] - i);
 }
 console.log('d)', arrayValuesMinusIndex);
 
+//    e)  Papildykite masyvą papildomais 10 elementų su reikšmėmis nuo 5 iki 25, kad bendras masyvas padidėtų iki indekso 39;
 while (array.length < 40) {
     let randNum = rand(5, 25);
     array.push(randNum);
 }
 console.log('e)', array);
 
+//    f)  Iš masyvo elementų sukurkite du naujus masyvus. Vienas turi būti sudarytas iš neporinių indeksų reikšmių, o kitas iš porinių (pagal neporinį-porinį indeksą, ne reikšmę);
 let evenArray = [];
 let oddArray = [];
 for (let i = 0; i < array.length; i++) {
     (i % 2 === 0) ? evenArray.push(array[i]) : oddArray.push(array[i])
 }
-console.log('f', 'Even index numbers:', evenArray);
-console.log('f', 'Odd index numbers:', oddArray);
+console.log('f)', 'Even index numbers:', evenArray);
+console.log('f)', 'Odd index numbers:', oddArray);
 
+//    g)  Pirminio masyvo elementus su poriniais indeksais padarykite lygius 0 jeigu jie didesni už 15;
+array.forEach((v, i) => {
+        if (i % 2 === 0 && v > 15) {
+            array[i] = 0;
+        }
+    }
+)
+console.log('g)', array);
+
+//    h)  Suraskite pirmą (mažiausią) indeksą, kurio elemento reikšmė didesnė už 10;
+const indexOfNumber = array.indexOf(array.find(v => v > 10));
+console.log('h)', indexOfNumber);
 
 /* Sugeneruokite masyvą, kurio reikšmės atsitiktinės raidės A, B, C ir D, o ilgis 200. Suskaičiuokite kiek yra kiekvienos raidės.
  */
