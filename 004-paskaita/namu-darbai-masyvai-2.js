@@ -37,10 +37,24 @@ array.forEach(i => {
 });
 console.log('a)', numbersOverTen);
 
+let arrayCopy = [...array];
 function bTask (array) {
-    array.sort((a, b) => a - b);
-    console.log(array);
+    arrayCopy.sort((a, b) => b - a);
+    return arrayCopy[0];
 }
+let largestNumberPosition = array.indexOf(bTask(array));
+console.log('b)', 'Number:', bTask(array), 'Position:', largestNumberPosition);
+
+let sumOfEvenIndex = 0;
+for (let i = 0; i < array.length; i++) {
+    if (i % 2 === 0) {
+        sumOfEvenIndex += array[i];
+    }
+}
+console.log('c)', sumOfEvenIndex);
+
+let arrayValuesMinusIndex = [];
+
 
 /* Sugeneruokite masyvą, kurio reikšmės atsitiktinės raidės A, B, C ir D, o ilgis 200. Suskaičiuokite kiek yra kiekvienos raidės.
  */

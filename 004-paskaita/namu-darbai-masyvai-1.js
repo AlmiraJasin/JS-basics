@@ -189,16 +189,39 @@ console.table(newWalletWithCompartments);
 /* Į piniginės popierinių pinigų skyrelį įdėti 500 pinigų mažom kupiūrom ( generuoti atsitiktinius skaičius nuo 3 iki 10 ir dėti kaip naujus elementus, kol įdėta suma bus lygi 500);
  */
 
+
 console.log('16 uzdavinys');
 
-
+let newBanknotesTotal = 0;
+while (newBanknotesTotal < 500) {
+    let randNum = rand(3, 10);
+    newBanknotesTotal += randNum;
+    newWalletWithCompartments[1].push(randNum);
+}
+console.log(newWalletWithCompartments);
 
 /* Patikrinti ar ką nors laimėjote. Bilieto numerius dalinkite iš 777 ir jeigu numeris išsidalins be liekanos - jūs laimėjote! Suskaičiuokite, kiek buvo laimingų bilietų.
  */ 
 
 console.log('17 uzdavinys');
 
+let luckyTickets = 0;
+newWalletWithCompartments[3].forEach(t => {
+        if (t % 777 === 0) {luckyTickets++;}
+    }
+);
+console.log(luckyTickets);
+
 /* Sukurkite penktą skyrelį ir į jį sudėkite nuotraukas: ['šuo', 'katė', 'automobilis', 'namas', 'kiemas'] ir jas išrūšiuokite pagal žodžių ilgį taip, kad pirma eitų trumpiausi žodžiai;
  */
 
 console.log('18 uzdavinys');
+
+const photos = ['šuo', 'katė', 'automobilis', 'namas', 'kiemas']
+newWalletWithCompartments.push(photos)
+
+newWalletWithCompartments[4].sort(
+    (a, b) => a.length - b.length
+)
+
+console.table(newWalletWithCompartments);
