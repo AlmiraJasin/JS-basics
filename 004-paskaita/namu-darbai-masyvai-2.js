@@ -54,6 +54,24 @@ for (let i = 0; i < array.length; i++) {
 console.log('c)', sumOfEvenIndex);
 
 let arrayValuesMinusIndex = [];
+for (let i = 0; i < array.length; i++) {
+    arrayValuesMinusIndex.push(array[i] - i);
+}
+console.log('d)', arrayValuesMinusIndex);
+
+while (array.length < 40) {
+    let randNum = rand(5, 25);
+    array.push(randNum);
+}
+console.log('e)', array);
+
+let evenArray = [];
+let oddArray = [];
+for (let i = 0; i < array.length; i++) {
+    (i % 2 === 0) ? evenArray.push(array[i]) : oddArray.push(array[i])
+}
+console.log('f', 'Even index numbers:', evenArray);
+console.log('f', 'Odd index numbers:', oddArray);
 
 
 /* Sugeneruokite masyvą, kurio reikšmės atsitiktinės raidės A, B, C ir D, o ilgis 200. Suskaičiuokite kiek yra kiekvienos raidės.
