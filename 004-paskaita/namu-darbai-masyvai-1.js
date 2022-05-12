@@ -132,20 +132,13 @@ cardCompartment.sort();
 
 console.log(cardCompartment);
 
-/* Į kortelių skyrelį pridėti mokėjimo kortelių 'MasterCard', 'Visa' (su rand generuokite atsitiktines reikšmes 'MasterCard' arba 'Visa' ir rašykite į masyvą) iš skirtingų bankų tiek, kad skyrelis (masyvo ilgis) pasidarytų lygus 20;
+/* Į kortelių skyrelį pridėti mokėjimo kortelių rand(0, 1)'MasterCard', 'Visa' (su rand generuokite atsitiktines reikšmes 'MasterCard' arba 'Visa' ir rašykite į masyvą) iš skirtingų bankų tiek, kad skyrelis (masyvo ilgis) pasidarytų lygus 20;
  */
 
 console.log('12 uzdavinys');
 
 while (cardCompartment.length < 30) {
-    let newCard = '';
-    const drawNewCard = rand(0, 1);
-    if (drawNewCard === 0) {
-        newCard = 'MasterCard';
-    } else {
-        newCard = 'Visa';
-    }
-    cardCompartment.push(newCard);
+    (rand(0, 1) === 0) ? cardCompartment.push('MasterCard') : cardCompartment.push('Visa');
 }
 console.log(cardCompartment);
 
