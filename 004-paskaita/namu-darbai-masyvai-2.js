@@ -97,17 +97,39 @@ console.log('h)', indexOfNumber);
 
 console.log('3 uzdavinys');
 
+const letters = 'ABCD'
+let letterArray = [];
+while (letterArray.length < 200) {
+    letterArray.push(letters.charAt(rand(0, letters.length - 1)));
+}
+console.log(letterArray);
 
+console.log((letterArray.filter(v => v === 'A')).length)
+console.log((letterArray.filter(v => v === 'B')).length)
+console.log((letterArray.filter(v => v === 'C')).length)
+console.log((letterArray.filter(v => v === 'D')).length)
 
 /* Sugeneruokite 3 masyvus pagal 3 uždavinio sąlygą. Sudėkite masyvus, sudėdami atitinkamas reikšmes. Paskaičiuokite kiek unikalių (po vieną, nesikartojančių) reikšmių ir kiek unikalių kombinacijų gavote.
  */
 
 console.log('4 uzdavinys');
 
+let letterArray1 = [];
+let letterArray2 = [];
+let letterArray3 = [];
+const randArrayGenerator = (Array) => {   
+    while (array.length < 200) {
+        array.push(letters.charAt(rand(0, letters.length - 1)));
+    }
+}
+console.log(randArrayGenerator(letterArray1));
+
 /* Sugeneruokite du masyvus, kurių reikšmės yra atsitiktiniai skaičiai nuo 100 iki 999. Masyvų ilgiai 100. Masyvų reikšmės turi būti unikalios savo masyve (t.y. neturi kartotis).
  */
 
 console.log('5 uzdavinys');
+
+
 
 /* Sugeneruokite masyvą, kuris būtų sudarytas iš reikšmių, kurios yra pirmame 6 uždavinio masyve, bet nėra antrame 6 uždavinio masyve.
  */
