@@ -117,12 +117,17 @@ console.log('4 uzdavinys');
 let letterArray1 = [];
 let letterArray2 = [];
 let letterArray3 = [];
-const randArrayGenerator = (Array) => {   
+const randArrayGenerator = (array) => {   
     while (array.length < 200) {
         array.push(letters.charAt(rand(0, letters.length - 1)));
     }
 }
-console.log(randArrayGenerator(letterArray1));
+randArrayGenerator(letterArray1)
+randArrayGenerator(letterArray2)
+randArrayGenerator(letterArray3)
+console.log(letterArray1);
+console.log(letterArray2);
+console.log(letterArray3);
 
 /* Sugeneruokite du masyvus, kurių reikšmės yra atsitiktiniai skaičiai nuo 100 iki 999. Masyvų ilgiai 100. Masyvų reikšmės turi būti unikalios savo masyve (t.y. neturi kartotis).
  */
