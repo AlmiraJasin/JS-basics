@@ -129,7 +129,20 @@ console.log(randArrayGenerator(letterArray1));
 
 console.log('5 uzdavinys');
 
-
+let arr1 = [];
+let arr2 = [];
+while (arr1.length < 100 || arr2.length < 100 ) {
+    let randForArr1 = rand(100, 999);
+    let randForArr2 = rand(100, 999);
+    if (arr1.includes(randForArr1)) {
+    continue;
+    } arr1.push(randForArr1);
+    if (arr2.includes(randForArr2)) {
+    continue;
+    } arr2.push(randForArr2);
+}
+console.log(arr1);
+console.log(arr2);
 
 /* Sugeneruokite masyvą, kuris būtų sudarytas iš reikšmių, kurios yra pirmame 6 uždavinio masyve, bet nėra antrame 6 uždavinio masyve.
  */
