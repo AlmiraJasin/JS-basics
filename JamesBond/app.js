@@ -14,5 +14,33 @@ tagAll.forEach(h1 => {
     h1.innerHTML = '<i>Valio valio</i>'
 });
 
+const btn = document.querySelector('button');
+btn.addEventListener('click', () => {
+    console.log('atliktas paspaudimas');
+});
+
+tagAll.forEach(h1 => {
+    h1.addEventListener('click', () => {
+        h1.style.color = h1.style.color === 'red' ? '#fff' : 'red';
+        console.log(e);
+    })
+});
+
+document.querySelector('a').addEventListener('click', e => {
+    e.preventDefault();
+    e.target.style.color = 'red';
+});
+
+document.querySelector('#child').addEventListener('click', e => {
+    e.stopPropagation();
+    e.target.style.backgroundColor = 'red';
+});
+
+document.querySelector('#parent').addEventListener('click', e => {
+    document.querySelector('#parent').style.backgroundColor = 'red';
+});
+
+
+
 
 
