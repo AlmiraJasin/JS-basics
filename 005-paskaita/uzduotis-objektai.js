@@ -35,7 +35,7 @@ Medinė dėžė 47 1025.74
 
 const products = ['Dviratis', 'Triratis', 'Žvakidė', 'Stalas', 'Kėdė', 'Knygų lentyna', 'Paveikslas su rėmu', 'Veidrodis', 'Keturių vietų palapinė', 'Pripučiama valtis', 'Meškerė karosams gaudyti', 'Planšetė', 'Pastatoma lempa', 'Vazonas', 'Baterijų pakrovėjas', 'Pagalvių komplektas', 'Oro drėkintuvas', 'Oro sausintuvas', 'Kavinukas elektrinis', 'Kilimas 2 X 3 metrų', 'Kilimėlis kojoms valyti', 'Užuolaidos', 'Vėjo malūnas', 'Dažai sienoms', 'Dažai luboms', 'Medinė dėžė'];
 
-
+// Funkcija kiekvieno produkto kaip objekto generavimui
 const generateProducts = (productsAmount) => {
     const productsList = [];
     for (let i = 0; i < productsAmount; i++) {
@@ -51,6 +51,7 @@ const generateProducts = (productsAmount) => {
     return productsList;
 };
 
+// Funkcija kiekvienos saskaitos ID generavimui
 const generateId = (number) => {
     if (number < 10) {
         return `INV00${number}`;
@@ -61,6 +62,8 @@ const generateId = (number) => {
     }
 }
 
+
+// Funkcija kiekvienos saskaitos kaip objekto generavimui
 const generateInvoice = (id) => {
     let products = generateProducts(rand(1, 10));
     const total = +products.reduce((total, product) => {
@@ -75,13 +78,28 @@ const generateInvoice = (id) => {
         vat,
         grandTotal: +(total + vat).toFixed(2)
     }
-    console.log(invoice);
+    return invoice;
 }
 
+// Ciklas galutiniam saskaitu masyvui sudaryti
+let invoiceList = [];
 for(let i = 1; i <= 100; i++){
-    generateInvoice(generateId(i));
+    invoiceList.push(generateInvoice(generateId(i)));
 }
 
+console.log(invoiceList);
+
+// Rasti: produktu sarasa, bendra to product amount, to product total price
+const invoiceListGrandTotal = invoiceList()
+
+
+
+// Visu saskaitu bendra suma
+
+
+
+
+// example invoice structure
 const invoice = {
     number: 'INV001',
     products: generateProducts(3),
