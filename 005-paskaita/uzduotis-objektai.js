@@ -10,9 +10,7 @@ function randPrice(min, max) {
 /* Duomenų struktūros
 
 Sukurti 100 sąskaitų masyvą.
-
 Kiekviena sąskaita yra objektas ir turi po 5 savybes:
-
     number: pagal taisykle INV001, INV002, … INV099, INV100;
     products: masyvas random ilgio nuo 1 iki 10;
         products masyvo elementai objektai, turintys po 4 savybes:
@@ -23,9 +21,7 @@ Kiekviena sąskaita yra objektas ir turi po 5 savybes:
     total: visų products masyvo elementų total suma
     vat: 21% nuo total
     grandTotal: vat ir total suma
-
 Sugeneruotame (ne generavimo metu!) masyve paskaičiuoti ir konsolėje atspausdinti visų sąskaitų grandTotal sumą, produktų sąrašą prie kiekvieno produkto pavadinimo pridedant koks to produkto kiekis yra visose sąskaitose bendrai ir už kokią bendrą sumą.
-
 Pvz: 
 Dviratis 35 479.55
 Triratis 10 457.22
@@ -62,7 +58,6 @@ const generateId = (number) => {
     }
 }
 
-
 // Funkcija kiekvienos saskaitos kaip objekto generavimui
 const generateInvoice = (id) => {
     let products = generateProducts(rand(1, 10));
@@ -86,61 +81,30 @@ let invoiceList = [];
 for(let i = 1; i <= 100; i++){
     invoiceList.push(generateInvoice(generateId(i)));
 }
-
 console.log(invoiceList);
 
 // Rasti: produktu sarasa, bendra to product amount, to product total price
-const invoiceListGrandTotal = invoiceList()
+const invoicesTotal = new Map();
+invoiceList.forEach((invoice) => {
+    invoice.products.forEach(product => {
+        if(!invoicesTotal.has(product.title)){
+            invoicesTotal.set(product.title, { amount: product.amount, total: product.total })
+        } else {
+            const productDetails = invoicesTotal.get(product.title);
+            productDetails.amount += product.amount;
+            productDetails.total += product.total;
+        }
+    });
+})
 
-
+invoicesTotal.forEach((productDetails, productName) => {
+    console.log(productName, productDetails.amount, +productDetails.total.toFixed(2));
+})
 
 // Visu saskaitu bendra suma
 
-
-
-
-// example invoice structure
-const invoice = {
-    number: 'INV001',
-    products: generateProducts(3),
-    total: 93.30,
-    vat: 19.60,
-    grandTotal: 112.89
-}
-
-//console.log(invoice);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+const invoicesGrandTotal = invoiceList.reduce((finalTotal, total) => {
+    finalTotal += total.grandTotal;
+    return finalTotal;
+}, 0)
+console.log('GrandTheftTotal', invoicesGrandTotal.toFixed(2));
