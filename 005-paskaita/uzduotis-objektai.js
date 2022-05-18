@@ -102,7 +102,6 @@ invoicesTotal.forEach((productDetails, productName) => {
 })
 
 // Visu saskaitu bendra suma
-
 const invoicesGrandTotal = invoiceList.reduce((finalTotal, total) => {
     finalTotal += total.grandTotal;
     return finalTotal;
