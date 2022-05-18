@@ -5,7 +5,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Hello></Hello>
+        <Hello spalva="green" skaicius={4}></Hello>
+        <Hello spalva="black" skaicius={4}></Hello>
+        <Hello spalva="red" skaicius={4}></Hello>
       </header>
     </div>
   );
