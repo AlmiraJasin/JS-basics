@@ -1,11 +1,14 @@
-/* Atskiri elementai
-Tamsiai žaliai nuspalvinti h1 tagą;
-    a)  Tagui i pridėti klasę small;
-    b)  https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
-    c)  Iš tago h1 pašalinti klasę main;
-    d)  Tik tam h2 tagui, kuris iškart eina po h1 tago, pridėti klasę first ir pašalinti klasę main;
-https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/remove
-    e)  Pirmam span tagui, kuris yra h2 viduje sumažinti fonto dydį iki 10px ir nudažyti pilkai */
+// Atskiri elementai
+//    a)  Tamsiai žaliai nuspalvinti h1 tagą;
+document.getElementsByTagName('h1')[0].style.color = 'green';
+//    b)  Tagui i pridėti klasę small; https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
+document.getElementsByTagName('i')[0].classList.add("small");
+//    c)  Iš tago h1 pašalinti klasę main;
+document.getElementsByTagName('h1')[0].classList.remove("main");
+//    d)  Tik tam h2 tagui, kuris iškart eina po h1 tago, pridėti klasę first ir pašalinti klasę main; https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/remove
+
+//    e)  Pirmam span tagui, kuris yra h2 viduje sumažinti fonto dydį iki 10px ir nudažyti pilkai
+
 
 /* Elemetų grupės (nodeList) skaičiavimus išvest į consolę
     a)  Suskaičiuoti kiek yra h2 tagų;
