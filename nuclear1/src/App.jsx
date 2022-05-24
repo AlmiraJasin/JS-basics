@@ -1,33 +1,44 @@
+import { useRef, useState } from 'react';
 import './App.scss';
-import { useEffect, useState } from 'react';
-import Books from './Components/011/Books';
-import axios from 'axios';
 
 function App() {
 
-    const [count, setCount] = useState(1);
-    const [books, setBooks] = useState([]);
+    const [count, setCount] = useState(0);
+    const numb = useRef(0);
+    const panda = useRef()
+    const add = () => {
+        setCount(c => c + 1);
+        numb.current = numb.current + 3;
+        console.log(numb);
+        // const p = document.querySelector('#panda');
+        // const p = panda.current;
+        // console.log(p.dataset.panda);
+    }
 
-    useEffect(() => {
-        console.log('YES'); // REDY!
-        axios.get('https://in3.dev/knygos/')
-        .then(res => {
-            console.log(res.data);
-            setBooks(res.data)
-        })
-    }, []);
+    const addCat = () => {
+        localStorage.setItem('cat', 'Cat Tom')
+    }
 
-    
+    const getCat = () => {
+        console.log(localStorage.getItem('cat'));
+    }
+
+    const removeCat = () => {
+        localStorage.removeItem('cat')
+    }
+
     return (
         <div className="App">
-          <header className="App-header">
-           <h1>{count}</h1>
-           <button onClick={() => setCount(c => c + 1)}>+1</button>
-           <Books books={books}></Books>
-          </header>
+        <header className="App-header">
+            <h1>useRef LocalStorage {count}</h1>
+            <button onClick={add}>Add One</button>
+            <button onClick={addCat}>Add Cat</button>
+            <button onClick={getCat}>Get Cat</button>
+            <button onClick={removeCat}>Remove Cat</button>
+            <div ref={panda} data-panda='miega'></div>
+        </header>
         </div>
     );
-
 }
 
 export default App;
