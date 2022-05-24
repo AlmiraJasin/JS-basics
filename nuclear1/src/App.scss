@@ -72,6 +72,7 @@ button {
   overflow: hidden;
   z-index: 1;
   border: none;
+  margin: 6px;
   cursor: pointer;
   &:after {
     content: '';

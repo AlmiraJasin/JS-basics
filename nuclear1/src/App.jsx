@@ -1,26 +1,38 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.scss';
 
 function App() {
 
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(null);
     const numb = useRef(0);
     const panda = useRef()
+
+    useEffect(() => {
+        setCount(parseInt(localStorage.getItem('count') ?? 0));
+    }, [])
+
+    useEffect(() => {
+        if (null === count) {
+            return;
+        }
+        localStorage.setItem('count', count);
+    }, [count]);
+
     const add = () => {
         setCount(c => c + 1);
         numb.current = numb.current + 3;
-        console.log(numb);
+        console.log(numb.current);
         // const p = document.querySelector('#panda');
         // const p = panda.current;
         // console.log(p.dataset.panda);
     }
 
     const addCat = () => {
-        localStorage.setItem('cat', 'Cat Tom')
+        localStorage.setItem('cat', JSON.stringify(['Cat Tom', 'Cat Poppy']))
     }
 
     const getCat = () => {
-        console.log(localStorage.getItem('cat'));
+        console.log(JSON.parse(localStorage.getItem('cat')));
     }
 
     const removeCat = () => {
