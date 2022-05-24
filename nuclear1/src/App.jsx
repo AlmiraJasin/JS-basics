@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import './App.scss';
+import randColor from './Functions/randColor';
 
 function App() {
 
@@ -39,10 +40,32 @@ function App() {
         localStorage.removeItem('cat')
     }
 
+    const [kv, setKv] = useState([]);
+
+    const addKv = () => {
+        setKv(k => [...k, randColor()]);
+        
+    }
+
+    const remKv = () => {
+        setKv(k => k.slice(0, -1));
+    }
+
+    useEffect(() => {
+        
+    })
+
     return (
         <div className="App">
         <header className="App-header">
             <h1>useRef LocalStorage {count}</h1>
+            <div className='kvc'>
+                {
+                    kv.map((c, i) => <div className='kv' key={i} style={{backgroundColor: c}}>{i + 1}</div>)
+                }
+            </div>
+            <button onClick={addKv}>AddKv</button>
+            <button onClick={remKv}>Remove</button>
             <button onClick={add}>Add One</button>
             <button onClick={addCat}>Add Cat</button>
             <button onClick={getCat}>Get Cat</button>
