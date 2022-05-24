@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import './App.scss';
 import randColor from './Functions/randColor';
 
-function App() {
 
+
+function App() {
     const [count, setCount] = useState(null);
     const numb = useRef(0);
-    const panda = useRef()
-
+    const panda = useRef();
     useEffect(() => {
         setCount(parseInt(localStorage.getItem('count') ?? 0));
     }, [])
