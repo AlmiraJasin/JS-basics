@@ -1,77 +1,72 @@
 import { useEffect, useRef, useState } from 'react';
 import './App.scss';
-import randColor from './Functions/randColor';
-
-
+import rand from './Functions/rand';
 
 function App() {
-    const [count, setCount] = useState(null);
-    const numb = useRef(0);
-    const panda = useRef();
-    useEffect(() => {
-        setCount(parseInt(localStorage.getItem('count') ?? 0));
-    }, [])
 
+    const [kv, setKv] = useState(null);
+    const istorija = useRef([]);
+
+    // PIRMAS KROVIMAS
     useEffect(() => {
-        if (null === count) {
+        setKv(JSON.parse(localStorage.getItem([]))); // gali buti null arba []
+    }, []);
+
+    // UZSAUGOS POKYCIUS
+    useEffect(() => {
+        if (null === kv) {
             return;
         }
-        localStorage.setItem('count', count);
-    }, [count]);
+        localStorage.setItem('kv', JSON.stringify(kv));
+        istorija.current.unshift(kv);
+    }, [kv]);
 
-    const add = () => {
-        setCount(c => c + 1);
-        numb.current = numb.current + 3;
-        console.log(numb.current);
-        // const p = document.querySelector('#panda');
-        // const p = panda.current;
-        // console.log(p.dataset.panda);
+
+    const prideti = () => {
+        const kiekis = rand(5, 10);
+        const kvadratukai = [];
+        for (let i = 0; i < kiekis; i++) {
+            kvadratukai.push('^o^');
+        }
+        setKv(k => null === k ? [...kvadratukai] : [...k, ...kvadratukai]);
     }
 
-    const addCat = () => {
-        localStorage.setItem('cat', JSON.stringify(['Cat Tom', 'Cat Poppy']))
+    const isvalyti = () => {
+        setKv([]);
     }
 
-    const getCat = () => {
-        console.log(JSON.parse(localStorage.getItem('cat')));
-    }
-
-    const removeCat = () => {
-        localStorage.removeItem('cat')
-    }
-
-    const [kv, setKv] = useState([]);
-
-    const addKv = () => {
-        setKv(k => [...k, randColor()]);
+    const atgal = () => {
+        let senas = istorija.current.shift();
+        if (!senas) {
+            setKv([]);
+        } else if (senas.length === kv.length) {
+            senas = istorija.current.shift();
+            if (!senas) {
+                setKv([]);
+            } else {
+                setKv(senas);
+            }
+        }
+        else {
+            setKv(senas);
+        }
         
     }
-
-    const remKv = () => {
-        setKv(k => k.slice(0, -1));
-    }
-
-    useEffect(() => {
-        
-    })
 
     return (
         <div className="App">
-        <header className="App-header">
-            <h1>useRef LocalStorage {count}</h1>
-            <div className='kvc'>
-                {
-                    kv.map((c, i) => <div className='kv' key={i} style={{backgroundColor: c}}>{i + 1}</div>)
-                }
-            </div>
-            <button onClick={addKv}>AddKv</button>
-            <button onClick={remKv}>Remove</button>
-            <button onClick={add}>Add One</button>
-            <button onClick={addCat}>Add Cat</button>
-            <button onClick={getCat}>Get Cat</button>
-            <button onClick={removeCat}>Remove Cat</button>
-            <div ref={panda} data-panda='miega'></div>
-        </header>
+            <header className="App-header">
+                <h1>PRAKTIMUMAS</h1>
+                    <div className="kvc">
+                        {
+                            kv ? kv.map((k, i) => <div key={i} className="kv">{k}</div>) : null
+                        }
+                    </div>
+
+                <button onClick={prideti}>Pridėti</button>
+                <button onClick={isvalyti}>Išvalyti</button>
+                <button onClick={atgal}>Atgal</button>
+            </header>
         </div>
     );
 }
