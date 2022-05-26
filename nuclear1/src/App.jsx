@@ -21,7 +21,6 @@ function App() {
         istorija.current.unshift(kv);
     }, [kv]);
 
-
     const prideti = () => {
         const kiekis = rand(5, 10);
         const kvadratukai = [];
@@ -50,7 +49,6 @@ function App() {
         else {
             setKv(senas);
         }
-        
     }
 
     return (
