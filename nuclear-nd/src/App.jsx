@@ -1,6 +1,6 @@
 import './App.css';
 //import { Greeting, HeadingColor, HeadingText, HeadingsText, TripleProps } from './Components/react-base/react-base';
-import { ShapeShift, ShapeShiftWithNumber } from './Components/react-class-state/react-class-state';
+import { ShapeShift, ShapeShiftWithNumber, AddAndSubstract } from './Components/react-class-state/react-class-state';
 
 function App() {
   return (
@@ -8,6 +8,7 @@ function App() {
       <header className="App-header">
       <ShapeShift />
       <ShapeShiftWithNumber />
+      <AddAndSubstract />
       </header>
     </div>
   );

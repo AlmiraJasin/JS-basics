@@ -42,7 +42,7 @@ const ShapeShiftWithNumber = () => {
         <div>
             <div className="container">
                 <div className={shape}>
-                    <span className="randnum">{}</span>
+                    <span className="randnum">{randNum}</span>
                 </div>
             </div> 
             <button
@@ -53,7 +53,7 @@ const ShapeShiftWithNumber = () => {
             </button>
             <button
             onClick={
-                () => setRandNum(randNum = rand(5, 25) )
+                () => setRandNum(rand(5, 25))
             }>
             Random
             </button>
@@ -66,8 +66,24 @@ export { ShapeShiftWithNumber }
 Paspaudus plus mygtuką, skaičius padidėja 1, 
 o paspaudus minus- sumažėja 3 */
 
+const AddAndSubstract = () => {
+    const [number, setNumber] = useState(0);
+    return (
+        <div>
+            <div className="container">
+                <span className="randnum">{number}</span>
+            </div> 
+            <button onClick={() => setNumber(number => number + 1)}>Add 1</button>
+            <button onClick={() => setNumber(number => number - 3)}>Substract 3</button>
+        </div>
+    )
+}
+export { AddAndSubstract }
+
 /* Sukurti aplikaciją, kuri turi mygtuką add, kurį paspaudus vieną kartą atsiranda mėlynas kvadratas, 
 paspaudus du - du kvadratai ir t.t. */
+
+
 
 /* Sukurti aplikaciją, kuri turi mygtukus add red, add blue ir reset. 
 Paspaudus add red, prisideda raudonas kvadratas, paspaudus add blue - mėlynas ir t.t. 
