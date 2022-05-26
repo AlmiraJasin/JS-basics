@@ -35,26 +35,32 @@ Paspaudus change mygtuką apskritimas keičiasi į stačiakampį kaip pirmame u�
 o paspaudus random mygtuką, skaičius pasikeičia į rand 5 - 25 */
 
 const ShapeShiftWithNumber = () => {
-    const [state, setState] = useState("circle");
+    const [shape, setShape] = useState("circle");
+    const [randNum, setRandNum] = useState(rand(5, 25))
 
     return (
         <div>
             <div className="container">
-                <div className={state}></div>
+                <div className={shape}>
+                    <span className="randnum">{}</span>
+                </div>
             </div> 
             <button
             onClick={
-                () => setState(state === "circle" ? "rectangle" : "circle" )
+                () => setShape(shape === "circle" ? "rectangle" : "circle" )
             }>
             Change
+            </button>
+            <button
+            onClick={
+                () => setRandNum(randNum = rand(5, 25) )
+            }>
+            Random
             </button>
         </div>
     )
 }
 export { ShapeShiftWithNumber }
-
-
-
 
 /* Sukurti aplikaciją, kuri turi mygtukus plus ir minus, bei atvaizduoja skaičių 0. 
 Paspaudus plus mygtuką, skaičius padidėja 1, 
