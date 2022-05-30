@@ -1,30 +1,45 @@
-//import { useState } from 'react';
-import { useState } from 'react';
-import './App.scss';
-//import randColor from './Functions/randColor';
-//import { v4 as uuidv4 } from 'uuid';
+// import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import './bootstrap.css';
+import Create from './Components/crud/Create';
+// import './App.scss';
+// import getId from './Functions/getId';
 
 
 function App() {
-    const [text, setText] = useState('');
-    const [select, setSelect] = useState('tree')
-    const inputText = e => {
-        setText(e.target.value + 'j');
-    }
+
+    const [createData, setCreateData] = useState(null);
+
+    useEffect(() => {
+        if (null === createData) {
+            return;
+        } 
+        
+    }, [createData])
 
     return (
-      <div className="App">
-        <header className="App-header">
-            <input type="text" onChange={inputText} value={text}></input>
-            <select value={select} onChange={e => setSelect(e.target.value)}>
-                <option value="one">Vienas</option>
-                <option value="two">Du</option>
-                <option value="tree">Trys</option>
-                <option value="ten">Daug</option>
-            </select>
-        </header>
-      </div>
+        <>
+            <div className="container">
+                <div className="row">
+                    <div className="col-4">
+                        <Create></Create>
+                    </div>
+                    <div className="col-8">
+                        One of three columns
+                    </div>
+                </div>
+            </div>
+        </>
     );
-  }
-  
-  export default App;
+
+
+}
+export default App;
+
+
+
+
+
+
+
+
