@@ -83,7 +83,23 @@ export { AddAndSubstract }
 /* Sukurti aplikaciją, kuri turi mygtuką add, kurį paspaudus vieną kartą atsiranda mėlynas kvadratas, 
 paspaudus du - du kvadratai ir t.t. */
 
+const AddSquare = () => {
+    const [square, setSquare] = useState([]);
+    const addSquare = () => {
 
+    }
+    return (
+        <div>
+            <div className="container">
+                {
+                    square.map()
+                }
+            </div> 
+            <button onClick={addSquare}>Add Square</button>
+        </div>
+    )
+}
+export { AddSquare }
 
 /* Sukurti aplikaciją, kuri turi mygtukus add red, add blue ir reset. 
 Paspaudus add red, prisideda raudonas kvadratas, paspaudus add blue - mėlynas ir t.t. 
