@@ -22,3 +22,13 @@ export function read() {
     return data;
 }
 
+export function remove({id}) {
+    let data = localStorage.getItem(key);
+    if (null === data) {
+        data = JSON.stringify([]);
+    }
+    data = JSON.parse(data);
+    data = data.filter(obj => obj.id !== id);
+    data = JSON.stringify(data);
+    localStorage.setItem(key, data);
+}
