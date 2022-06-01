@@ -19,12 +19,7 @@ const ShapeShift = () => {
             <div className="container">
                 <div className={state}></div>
             </div> 
-            <button
-            onClick={
-                () => setState(state === "circle" ? "square" : "circle" )
-            }>
-            Change
-            </button>
+            <button onClick={() => setState(state === "circle" ? "square" : "circle" )}>Change</button>
         </div>
     )
 }
@@ -73,8 +68,8 @@ const AddAndSubstract = () => {
             <div className="container">
                 <span className="randnum">{number}</span>
             </div> 
-            <button onClick={() => setNumber(number => number + 1)}>Add 1</button>
-            <button onClick={() => setNumber(number => number - 3)}>Substract 3</button>
+            <button onClick={() => setNumber(n => n + 1)}>Add 1</button>
+            <button onClick={() => setNumber(n => n - 3)}>Substract 3</button>
         </div>
     )
 }
@@ -86,16 +81,16 @@ paspaudus du - du kvadratai ir t.t. */
 const AddSquare = () => {
     const [square, setSquare] = useState([]);
     const addSquare = () => {
-
+        setSquare(square => [...square, 0]);        
     }
     return (
         <div>
             <div className="container">
                 {
-                    square.map()
+                    square.map((_, i) => <div key={i} className='square'></div>)
                 }
             </div> 
-            <button onClick={addSquare}>Add Square</button>
+            <button onClick={addSquare}>Add New Square</button>
         </div>
     )
 }
@@ -106,6 +101,25 @@ Paspaudus add red, prisideda raudonas kvadratas, paspaudus add blue - mėlynas i
 Spaudinėjant prisideda vis daygiau kvadratų. 
 Paspaudus reset viskas išsitrina */
 
+const AddColorfulSquare = () => {
+    const [square, setSquare] = useState([]);
+    const addSquare = (squareClass) => {
+        setSquare(square => [...square, squareClass]);
+    }
+    console.log(square);
+    return (
+        <div>
+            <div className="container">
+                {
+                    square.map((color, i) => <div key={i} className={color}></div>)
+                }
+            </div> 
+            <button onClick={() => addSquare('red-square')}>Add Red Square</button>
+            <button onClick={() => addSquare('blue-square')}>Add Blue Square</button>
+        </div>
+    )
+}
+export { AddColorfulSquare }
 
 
 

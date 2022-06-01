@@ -52,6 +52,29 @@
   height: 50px;
   background-color: blueviolet;
   border-radius: 50px;
+  margin: 5px;
+}
+
+.big-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85px;
+  height: 85px;
+  background-color: blueviolet;
+  border-radius: 50px;
+  margin: 5px;
+}
+
+.no-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85px;
+  height: 85px;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 50px;
+  margin: 5px;
 }
 
 .square {
@@ -61,6 +84,27 @@
   width: 50px;
   height: 50px;
   background-color: hotpink;
+  margin: 10px;
+}
+
+.red-square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  margin: 10px;
+}
+
+.blue-square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: blue;
+  margin: 10px;
 }
 
 .rectangle {
@@ -69,7 +113,8 @@
   align-items: center;
   width: 75px;
   height: 50px;
-  background-color: blue;
+  background-color: rgb(187, 232, 204);
+  margin: 5px;
 }
 
 .randnum {
@@ -93,6 +138,17 @@ button:hover {
   background-color: blue;
 }
 
+.text {
+  color: rgb(29, 29, 29);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.white-text {
+  color: rgb(241, 236, 236);
+  font-size: 18px;
+  font-weight: 700;
+}
 
 
 
