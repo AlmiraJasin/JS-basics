@@ -1,5 +1,5 @@
 import Tvenkinys from "./Components/011/Tvenkinys";
-import './App.css';
+import './App.scss';
 const seaPlaners = [
     {id: 1, type: 'man', name: 'Lina', color: 'blue'},
     {id: 2, type: 'car', name: 'Opel', color: 'red'},

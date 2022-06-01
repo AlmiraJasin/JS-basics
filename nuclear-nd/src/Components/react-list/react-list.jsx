@@ -13,6 +13,10 @@ const seaPlaners = [
 
 /* 1
 Sukurti Komponentą Bala ir jame atvaizduoti masyvą seaPlaners. */
+const Bala = () => {
+  return <div></div>
+}
+
 
 /* 2
 Sukurti du komponentus Tvenkinys, Daiktas -  tėvinį ir vaikinį atitinkamai. 
@@ -24,10 +28,16 @@ Jura tėvinis komponentas, kiti trys vaikiniai.
 Atvaizduoti masyvą seaPlaners pagal taisyklę: “man” - Valtis, “car” - Laivas, “animal” - Sala, “fish” - tiesiai Jura komponente (be jokio vaikinio komponento). */
 
 /* 4
-Sukurti keturis komponentus Vandenynas, Tipas, Vardas, Spalva. Vandenynas tėvinis komponentas kiti trys vaikiniai. Vaikiniuose komponentuose atvaizduoti tą patį masyvą, tik išrūšiuotą pagal komponento vardą (pvz Tipas išrūšiuota pagal tipą ir t.t.). */
+Sukurti keturis komponentus Vandenynas, Tipas, Vardas, Spalva. 
+Vandenynas tėvinis komponentas kiti trys vaikiniai. 
+Vaikiniuose komponentuose atvaizduoti tą patį masyvą, tik išrūšiuotą pagal komponento vardą (pvz Tipas išrūšiuota pagal tipą ir t.t.). */
 
 /* 5
-Sukurti penkis komponentus. Pasaulis, Namas, Narvas, Garazas ir Akvariumas. Pasaulis tėvinis komponentas, kiti keturi vaikiniai. Atvaizduoti masyvą seaPlaners pagal taisyklę: “man” - Namas, “car” - Garazas, “animal” - Narvas, “fish” - Akvariumas. Komponentas Pasaulis turi būti padalintas į dvi dalis- porinę ir neporinę (pagal id, ne masyvo indeksą). Visus keturis vaikinius komponentus panaudoti po du kartus - porinėje ir neporinėje dalyje, atvaizduojant porinius ir neporinius masyvo įrašus. */
+Sukurti penkis komponentus. Pasaulis, Namas, Narvas, Garazas ir Akvariumas. 
+Pasaulis tėvinis komponentas, kiti keturi vaikiniai. 
+Atvaizduoti masyvą seaPlaners pagal taisyklę: “man” - Namas, “car” - Garazas, “animal” - Narvas, “fish” - Akvariumas. 
+Komponentas Pasaulis turi būti padalintas į dvi dalis- porinę ir neporinę (pagal id, ne masyvo indeksą). 
+Visus keturis vaikinius komponentus panaudoti po du kartus - porinėje ir neporinėje dalyje, atvaizduojant porinius ir neporinius masyvo įrašus. */
 
 
 
