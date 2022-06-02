@@ -40,7 +40,9 @@ export function edit(obj) {
         data = JSON.stringify([]);
     }
     data = JSON.parse(data);
-    data = data.map(oldObject => oldObject.id !== obj.id ? oldObject : obj);
+    const index = data.findIndex(oldObject => oldObject.id === obj.id);
+    data[index] = obj;
+    //data = data.map(oldObject => oldObject.id !== obj.id ? oldObject : obj);
     data = JSON.stringify(data);
     localStorage.setItem(key, data);
 }
