@@ -109,7 +109,37 @@ Kuriant Grybo objektą jo savybės turi būti atsitiktinai (rand funkcija) prisk
 Eiti grybauti, t.y. Kurti naujus Grybas objektus, jeigu nesukirmijęs ir valgomas dėti į Krepsi objektą, t.y. 
 Vykdyti deti(grybas) metodą kol bus pririnktas pilnas krepšys nesukirmijusių ir valgomų grybų (gali būti truputį daugiau nei dydis). */
 
+class Grybas {
+    constructor() {
+        this.valgomas = !this.rand(0, 1);
+        this.sukirmijes = !this.rand(0, 1);
+        this.svoris = this.rand(5, 45);
+    }
+    rand(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+}
 
+class Krepsys {
+    constructor() {
+        this.dydis = 500;
+        this.prikrauta = 0;
+    }
+    deti(grybas) {
+        if(grybas.valgomas && !grybas.sukirmijes) {
+            this.prikrauta += grybas.svoris;
+        }
+        return this.prikrauta < this.dydis;
+    }
+}
+
+const Kr = new Krepsys();
+
+while(Kr.deti(new Grybas())){}
+
+console.log(Kr);
 
 /* console.log('uyy');
 
