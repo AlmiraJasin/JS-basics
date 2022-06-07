@@ -2,12 +2,14 @@ import './App.scss';
 import { useReducer, useState } from 'react'
 import { colorReducer } from './Reducers/colorReducer'
 import { spanReducer } from './Reducers/spanReducer'
+import { kvReducer } from './Reducers/kvReducer';
  
 function App() {
 
     const [color, dispatchColor] = useReducer(colorReducer, 'grey')
     const [span, dispatchSpan] = useReducer(spanReducer, '0000')
     const [colorInput, setColorInput] = useState('grey')
+    const [kv, dispatchKv] = useReducer(kvReducer, [])
 
     const goPink = () => {
         const action = {
@@ -40,6 +42,12 @@ function App() {
         }
         dispatchSpan(action);
     }
+    const getKv = () => {
+        const action = {
+            type: 'add_kv'
+        }
+        dispatchSpan(action);
+    }
 
     return (
         <div className="App">
@@ -52,6 +60,14 @@ function App() {
                 <button onClick={generateRandom}>Change Number</button>
                 <input type="color" value={colorInput} onChange={e => setColorInput(e.target.input)}></input>
                 <button onClick={changeColor}>Change Background</button>
+
+                <div className='kvc'>
+                    {
+                        kv.map((_, i) => {})
+                    }
+                </div>
+                <button onClick={getKv}>Add Kv</button>
+
             </header>
         </div>
     );
