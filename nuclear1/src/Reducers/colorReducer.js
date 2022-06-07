@@ -12,7 +12,8 @@ export function colorReducer(state, action) {
             newState = state === 'grey' ? 'pink' : 'grey';
             break;
         case 'change_background':
-            newState = input;
+            newState = action.payload;
+            break;
         default:
             newState = state;
     }

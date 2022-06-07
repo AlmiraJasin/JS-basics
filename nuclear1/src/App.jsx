@@ -7,7 +7,7 @@ function App() {
 
     const [color, dispatchColor] = useReducer(colorReducer, 'grey')
     const [span, dispatchSpan] = useReducer(spanReducer, '0000')
-    const [input, setInput] = useState('grey')
+    const [colorInput, setColorInput] = useState('grey')
 
     const goPink = () => {
         const action = {
@@ -36,20 +36,21 @@ function App() {
     const changeColor = () => {
         const action = {
             type: 'change_background',
+            payload: colorInput
         }
         dispatchSpan(action);
     }
 
     return (
         <div className="App">
-            <header style={{backgroundColor: color}} className="App-header">
+            <header className="App-header">
                 <h1 style={{backgroundColor: color}}>Learn Reducer</h1>
                 <span> {span} </span>
                 <button onClick={goPink}>Go Pink</button>
                 <button onClick={goGrey}>Go Grey</button>
                 <button onClick={goChange}>Change Color</button>
                 <button onClick={generateRandom}>Change Number</button>
-                <input type="text"></input>
+                <input type="color" value={colorInput} onChange={e => setColorInput(e.target.input)}></input>
                 <button onClick={changeColor}>Change Background</button>
             </header>
         </div>
