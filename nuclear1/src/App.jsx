@@ -1,72 +1,85 @@
+import { useReducer } from 'react';
 import './App.scss';
-import { useReducer, useState } from 'react'
-import { colorReducer } from './Reducers/colorReducer'
-import { spanReducer } from './Reducers/spanReducer'
-import { kvReducer } from './Reducers/kvReducer';
- 
+import listReducer from './Reducers/listReducer';
+
+
 function App() {
+    const [list, listDispach] = useReducer(listReducer, []);
 
-    const [color, dispatchColor] = useReducer(colorReducer, 'grey')
-    const [span, dispatchSpan] = useReducer(spanReducer, '0000')
-    const [colorInput, setColorInput] = useState('grey')
-    const [kv, dispatchKv] = useReducer(kvReducer, [])
-
-    const goPink = () => {
+    const newList = () => {
         const action = {
-            type: 'go_pink'
+            type: 'new'
         }
-        dispatchColor(action);
+        listDispach(action);
     }
-    const goGrey = () => {
+    const sortList = () => {
         const action = {
-            type: 'go_grey'
+            type: 'sort'
         }
-        dispatchColor(action);
+        listDispach(action)
     }
-    const goChange = () => {
+    const sortLarge = () => {
         const action = {
-            type: 'change_color'
+            type: 'sort_Large'
         }
-        dispatchColor(action);
+        listDispach(action)
     }
-    const generateRandom = () => {
+    const sortSmall = () => {
         const action = {
-            type: 'change_number'
+            type: 'sort_Small'
         }
-        dispatchSpan(action);
+        listDispach(action)
     }
-    const changeColor = () => {
+    const resetFilter = () => {
         const action = {
-            type: 'change_background',
-            payload: colorInput
+            type: 'reset_Filter'
         }
-        dispatchSpan(action);
-    }
-    const getKv = () => {
+        listDispach(action)
+    }    
+    const resetSort = () => {
         const action = {
-            type: 'add_kv'
+            type: 'reset_Sort'
         }
-        dispatchSpan(action);
-    }
+        listDispach(action)
+    }      
+    const resetColor = () => {
+        const action = {
+            type: 'reset_Color'
+        }
+        listDispach(action)
+    }    
+    const add = () => {
+        const action = {
+            type: 'add'
+        }
+        listDispach(action)
+    }    
+    const softDelete = () => {
+        const action = {
+            type: 'softDelete'
+        }
+        listDispach(action)
+    }    
 
     return (
         <div className="App">
             <header className="App-header">
-                <h1 style={{backgroundColor: color}}>Learn Reducer</h1>
-                <span> {span} </span>
-                <button onClick={goPink}>Go Pink</button>
-                <button onClick={goGrey}>Go Grey</button>
-                <button onClick={goChange}>Change Color</button>
-                <button onClick={generateRandom}>Change Number</button>
-                <input type="color" value={colorInput} onChange={e => setColorInput(e.target.input)}></input>
-                <button onClick={changeColor}>Change Background</button>
-
-                <div className='kvc'>
+                <h1>REDUCER</h1>
+                <div className="kvc">
+                <button onClick={newList}>New List</button>
+                <button onClick={sortList}>Sort List</button>
+                <button onClick={sortLarge}>Larger than 4000</button>
+                <button onClick={sortSmall}>Smaller than 4000</button>
+                <button onClick={resetFilter}>Reset Filter</button>
+                <button onClick={resetSort}>Reset Sort</button>
+                <button onClick={resetColor}>Reset Color</button>
+                <button onClick={add}>Add</button>
+                </div>
+                <div className="kvc" onClick={softDelete}>
                     {
-                        kv.map((_, i) => {})
+                        list.map((o, i) => o.show ? <div key={i} className="kv" style={{backgroundColor: o.color}}>{o.number}</div> : null)
                     }
                 </div>
-                <button onClick={getKv}>Add Kv</button>
 
             </header>
         </div>
