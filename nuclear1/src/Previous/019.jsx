@@ -1,5 +1,5 @@
 import './App.scss';
-import { Counter } from './Components/019/Counter'
+import { Counter } from '../Components/019/Counter'
 
 function App() {
 

@@ -1,8 +1,8 @@
 import './App.scss';
 import { useReducer, useState } from 'react'
-import { colorReducer } from './Reducers/colorReducer'
-import { spanReducer } from './Reducers/spanReducer'
-import { kvReducer } from './Reducers/kvReducer';
+import { colorReducer } from '../Reducers/colorReducer'
+import { spanReducer } from '../Reducers/spanReducer'
+import { kvReducer } from '../Reducers/kvReducer';
  
 function App() {
 

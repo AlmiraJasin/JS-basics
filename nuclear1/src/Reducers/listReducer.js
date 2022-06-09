@@ -50,7 +50,10 @@ function listReducer(state, action) {
                     }];
             break;
         case 'softDelete':
-            newState = state.map(o => ({...o, show: false}))
+            newState = state.map(o => o.number === action.payload ? {...o, show: false} : {...o})
+            break;
+        case 'range':
+            newState = state.map(o => o.number > action.payload ? {...o, show: true} : {...o, show: false})
             break;
         default:
             newState = [...state];
