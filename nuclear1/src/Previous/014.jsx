@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import './App.scss';
-import rand from './Functions/rand';
+import rand from '../Functions/rand';
 
 function App() {
 

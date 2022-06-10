@@ -5,7 +5,6 @@ Parašyti šiai klasei metodus, pridedančius akmenis: prideti1Akmeni() pridetiD
 Sukurti vieną kibiro objektą ir pademonstruoti akmenų rinkimą į kibirą ir rezultatų išvedimą. */
 
 
-
 /* 2
 Sukurti klasę Pinigine. 
 Konstruktoriuje sukurti dvi savybes popieriniaiPinigai ir metaliniaiPinigai.
@@ -56,6 +55,51 @@ Sukurti metodą stiklinejeYra(), kuris į konsolę atspausdintų kiek stiklinėj
 Sukurti tris stiklinės objektus su tūriais: 200, 150, 100. 
 Didžiausią pripilti pilną ir tada ją ispilti į mažesnę stiklinę, o mažesnę į dar mažesnę. */
 
+class Stikline {
+    static gerimukas = 'Pepsi';
+    static registas = [];
+    static naujaStikline(t) {
+        return new Stikline(t)
+    }
+    static whatType() {
+        console.log(this.gerimukas);
+    }
+    static visosStiklines (stikline) {
+        this.registas.push(stikline);
+    } 
+    constructor(turis) {
+        this.turis = turis;
+        this.kiekis = 0;
+        this.constructor.visosStiklines(this);
+    }
+    ipilti(kiekis) {
+        this.kiekis = Math.min(this.turis, this.kiekis + kiekis);
+    }
+    ispilti(kiekis) {
+        const kiek = this.kiekis;
+        this.kiekis = 0;
+        return kiek;
+    }
+    stiklinejeYra() {
+        console.log(`Stiklineje ${this.turis} ml yra ${this.kiekis} gerimo`);
+    }
+}
+
+const s1 = new Stikline(200);
+const s2 = new Stikline(150);
+const s3 = new Stikline(100);
+
+s1.ipilti(1000);
+s1.stiklinejeYra();
+
+s2.ipilti(s1.ispilti());
+s2.stiklinejeYra();
+
+s3.ipilti(s2.ispilti());
+s3.stiklinejeYra();
+
+console.log(Stikline.registas);
+
 /* 9
 Sukurti klasę Grybas. 
 Sukurti klasę Krepsys. 
@@ -65,6 +109,37 @@ Kuriant Grybo objektą jo savybės turi būti atsitiktinai (rand funkcija) prisk
 Eiti grybauti, t.y. Kurti naujus Grybas objektus, jeigu nesukirmijęs ir valgomas dėti į Krepsi objektą, t.y. 
 Vykdyti deti(grybas) metodą kol bus pririnktas pilnas krepšys nesukirmijusių ir valgomų grybų (gali būti truputį daugiau nei dydis). */
 
+class Grybas {
+    constructor() {
+        this.valgomas = !this.rand(0, 1);
+        this.sukirmijes = !this.rand(0, 1);
+        this.svoris = this.rand(5, 45);
+    }
+    rand(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+}
+
+class Krepsys {
+    constructor() {
+        this.dydis = 500;
+        this.prikrauta = 0;
+    }
+    deti(grybas) {
+        if(grybas.valgomas && !grybas.sukirmijes) {
+            this.prikrauta += grybas.svoris;
+        }
+        return this.prikrauta < this.dydis;
+    }
+}
+
+const Kr = new Krepsys();
+
+while(Kr.deti(new Grybas())){}
+
+console.log(Kr);
 
 /* console.log('uyy');
 

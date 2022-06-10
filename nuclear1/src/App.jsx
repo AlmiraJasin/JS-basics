@@ -1,76 +1,52 @@
-import { useEffect, useState } from 'react';
-import './bootstrap.css';
-import './crud.scss';
-import Create from './Components/crud/Create';
-import List from './Components/crud/List';
-import { create, edit, read, remove } from './Functions/localStorage';
-import Edit from './Components/crud/Edit';
-// import './App.scss';
-
-
+import './App.scss';
+import { useEffect, useReducer } from 'react';
+import axios from 'axios';
+import { booksReducer } from './Reducers/booksReducer'
 
 function App() {
+    const [books, dispatchBooks] = useReducer(booksReducer, []);
 
-    const [lastUpdate, setLastUpdate] = useState(Date.now());
-
-    const [exes, setExes] = useState(null);
-    const [modalData, setModalData] = useState(null);
-
-    const [createData, setCreateData] = useState(null);
-    const [deleteData, setDeleteData] = useState(null);
-    const [editData, setEditData] = useState(null);
-
-    //Read
     useEffect(() => {
-        setExes(read());
-    }, [lastUpdate]);
+        axios.get('http://in3.dev/knygos/')
+        .then(res => {
+            const action = {
+                payload:res.data,
+                type:'get_from_server'
+            }
+            dispatchBooks(action);
+        })
+    }, []);
 
-    // Create
-    useEffect(() => {
-        if (null === createData) {
-            return;
+    const sortByTitle = () => {
+        const action = {
+            type: 'sort_by_title'
         }
-        create(createData);
-        setLastUpdate(Date.now());
-
-    }, [createData]);
-
-    // Delete
-    useEffect(() => {
-        if (null === deleteData) {
-            return;
+        dispatchBooks(action);
+    }
+    const resetSort = () => {
+        const action = {
+            type: 'reset_sort'
         }
-        remove(deleteData);
-        setLastUpdate(Date.now());
-
-    }, [deleteData]);
-
-    // Edit
-    useEffect(() => {
-        if (null === editData) {
-            return;
-        }
-        edit(editData);
-        setLastUpdate(Date.now());
-
-    }, [editData]);
-
+        dispatchBooks(action);
+    }
+    
     return (
-        <>
-            <div className="container">
-                <div className="row">
-                    <div className="col-4">
-                        <Create setCreateData={setCreateData}></Create>
-                    </div>
-                    <div className="col-8">
-                        <List exes={exes} setDeleteData={setDeleteData} setModalData={setModalData}></List>
-                    </div>
-                </div>
-            </div>
-            <Edit setEditData={setEditData} modalData={modalData} setModalData={setModalData}></Edit>
-        </>
+        <div className="App">
+          <header className="App-header">
+           <h1>Reducer</h1>
+           <div>   
+                {
+                    books.length ? books.map(b => <div key={b.id}>{b.title} <i>{b.price} EUR</i> </div>) : <h2>Loading...</h2>
+                }
+           </div>
+           <button onClick={sortByTitle}>Sort By Title</button>
+           <button onClick={resetSort}>Reset Sort</button>
+           <button onClick={greaterThan13}>13 EUR and more</button>
+           <button onClick={newBookList}>New Book List</button>
+          </header>
+        </div>
     );
 
-
 }
+
 export default App;

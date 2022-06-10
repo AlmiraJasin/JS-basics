@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import './App.scss';
-import randColor from './Functions/randColor';
+import randColor from '../Functions/randColor';
 // import { v4 as uuidv4 } from 'uuid';
 
 
