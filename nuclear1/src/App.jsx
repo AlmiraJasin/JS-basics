@@ -1,52 +1,27 @@
 import './App.scss';
-import { useEffect, useReducer } from 'react';
-import axios from 'axios';
-import { booksReducer } from './Reducers/booksReducer'
+import {useState} from 'react';
+import Suo from './Components/024/Suo';
+import Duomenys from './Contexts/Duomenys';
 
 function App() {
-    const [books, dispatchBooks] = useReducer(booksReducer, []);
 
-    useEffect(() => {
-        axios.get('http://in3.dev/knygos/')
-        .then(res => {
-            const action = {
-                payload:res.data,
-                type:'get_from_server'
-            }
-            dispatchBooks(action);
-        })
-    }, []);
+    const [counter1, setCounter1] = useState(1);
+    const [counter2, setCounter2] = useState(3);
 
-    const sortByTitle = () => {
-        const action = {
-            type: 'sort_by_title'
-        }
-        dispatchBooks(action);
-    }
-    const resetSort = () => {
-        const action = {
-            type: 'reset_sort'
-        }
-        dispatchBooks(action);
-    }
-    
+
     return (
+        <Duomenys.Provider value={{counter1, counter2}}>
         <div className="App">
           <header className="App-header">
-           <h1>Reducer</h1>
-           <div>   
-                {
-                    books.length ? books.map(b => <div key={b.id}>{b.title} <i>{b.price} EUR</i> </div>) : <h2>Loading...</h2>
-                }
-           </div>
-           <button onClick={sortByTitle}>Sort By Title</button>
-           <button onClick={resetSort}>Reset Sort</button>
-           <button onClick={greaterThan13}>13 EUR and more</button>
-           <button onClick={newBookList}>New Book List</button>
+            <h1>ConTeXt</h1>
+            <Suo></Suo>
+            <button onClick={() => setCounter1(c => c + 1)}>+1</button>
+            <button onClick={() => setCounter2(c => c + 3)}>+3</button>
           </header>
         </div>
-    );
-
-}
-
-export default App;
+        </Duomenys.Provider>
+      );
+    }
+    
+    export default App;
+    
