@@ -1,6 +1,6 @@
-const express = require('express')
-const app = express()
-const port = 3003
+const express = require("express");
+const app = express();
+const port = 3003;
 const cors = require("cors");
 app.use(cors());
 const mysql = require("mysql");
@@ -11,8 +11,6 @@ app.use(
 );
 app.use(express.json());
 
-
-
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -21,19 +19,12 @@ const con = mysql.createConnection({
 });
 
 //Routes
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-app.get('/zuikis', (req, res) => {
-    res.send('Hello Zuikis!')
-  })
-
 app.get("/medziai", (req, res) => {
     const sql = `
-    SELECT
-    *
-    FROM trees`;
+  SELECT
+  *
+  FROM trees
+`;
     con.query(sql, (err, result) => {
         if (err) throw err;
         res.send(result);
@@ -41,5 +32,5 @@ app.get("/medziai", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+    console.log(`Bebras klauso porto Nr ${port}`);
+});
