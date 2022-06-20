@@ -1,23 +1,73 @@
-// import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import TreeContext from "./TreeContext";
 
-import Tree from "./Tree";
+function Edit() {
 
-function List({exes, setDeleteData, setModalData}) {
+    const { modalData, setModalData, setEditData } = useContext(TreeContext);
+
+
+    const [title, setTitle] = useState('');
+    const [type, setType] = useState('1');
+    const [height, setHeight] = useState('');
+
+    useEffect(() => {
+        if (null === modalData) {
+            return;
+        }
+        setTitle(modalData.title);
+        setType(modalData.type);
+        setHeight(modalData.height);
+    }, [modalData]);
+
+    const handleEdit = () => {
+        const data = {title, type, height, id: modalData.id};
+        setEditData(data);
+        setModalData(null);
+    }
+
+    if (null === modalData) {
+        return null;
+    }
 
     return (
-        <div className="card mt-4">
-            <div className="card-header">
-                <h2>List of Ex`es</h2>
-            </div>
-            <div className="card-body">
-                <ul className="list-group">
-                    {
-                    exes ? exes.map(tree => <Tree key={tree.id} tree={tree}></Tree>) : null
-                    }
-                </ul>
+        <div className="modal">
+            <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title">Ex Changer</h5>
+                        <button type="button" className="close" onClick={() => setModalData(null)}>
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div className="modal-body">
+                        <div className="form-group">
+                            <label>Title</label>
+                            <input type="text" className="form-control" onChange={e => setTitle(e.target.value)} value={title} />
+                            <small className="form-text text-muted">Enter tree title here.</small>
+                        </div>
+                        <div className="form-group">
+                            <label>Type</label>
+                            <select className="form-control" onChange={e => setType(e.target.value)} value={type}>
+                                <option value="1">Leaf</option>
+                                <option value="2">Spike</option>
+                                <option value="3">Palm</option>
+                            </select>
+                            <small className="form-text text-muted">Select tree type here.</small>
+                        </div>
+                        <div className="form-group">
+                            <label>Height</label>
+                            <input type="text" className="form-control" onChange={e => setHeight(e.target.value)} value={height} />
+                            <small className="form-text text-muted">Enter tree height here.</small>
+                        </div>
+                    </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-outline-secondary" onClick={() => setModalData(null)}>Close</button>
+                        <button type="button" className="btn btn-outline-primary" onClick={handleEdit}>Save changes</button>
+                    </div>
+                </div>
             </div>
         </div>
     );
 }
 
-export default List;
+export default Edit;

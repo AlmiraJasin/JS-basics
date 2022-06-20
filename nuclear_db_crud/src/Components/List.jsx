@@ -1,10 +1,12 @@
+// import { useState } from "react";
+
 import { useContext } from "react";
 import Tree from "./Tree";
 import TreeContext from "./TreeContext";
 
 function List() {
 
-    const {trees} = useContext(TreeContext)
+    const {trees} = useContext(TreeContext);
 
     return (
         <div className="card mt-4">
