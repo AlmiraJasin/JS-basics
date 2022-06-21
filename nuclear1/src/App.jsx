@@ -1,51 +1,58 @@
+import { useEffect, useReducer, useState } from "react";
+import ld from "./Reducers/ld";
 import './App.scss';
-import { useEffect, useReducer } from 'react';
-import axios from 'axios';
-import { booksReducer } from './Reducers/booksReducer'
+
+    const masyvas = [
+        {id:3, name: 'Peter', bid: 487.77, date: '2022-06-01T10:37'},
+        {id:7, name: 'Mary', bid: 125.33, date: '2022-06-01T11:37'},
+        {id:8, name: 'Ązuolas', bid: 78.25, date: '2022-06-01T09:22'},
+        {id:9, name: 'Petras Dainorius', bid: 487.77, date: '2022-06-01T08:13'}
+    ];
 
 function App() {
-    const [books, dispatchBooks] = useReducer(booksReducer, []);
 
-    useEffect(() => {
-        axios.get('http://in3.dev/knygos/')
-        .then(res => {
-            const action = {
-                payload:res.data,
-                type:'get_from_server'
-            }
-            dispatchBooks(action);
-        })
-    }, []);
-
-    const sortByTitle = () => {
-        const action = {
-            type: 'sort_by_title'
-        }
-        dispatchBooks(action);
-    }
-    const resetSort = () => {
-        const action = {
-            type: 'reset_sort'
-        }
-        dispatchBooks(action);
-    }
+    const [list, dispachList] = useReducer(ld, masyvas);
+    const [select, setSelect] = useState('bid_desc')
     
+    useEffect(() => {
+        dispachList({
+            type: select
+        })
+    }, [select])
     return (
         <div className="App">
-          <header className="App-header">
-           <h1>Reducer</h1>
-           <div>   
-                {
-                    books.length ? books.map(b => <div key={b.id}>{b.title} <i>{b.price} EUR</i> </div>) : <h2>Loading...</h2>
-                }
-           </div>
-           <button onClick={sortByTitle}>Sort By Title</button>
-           <button onClick={resetSort}>Reset Sort</button>
-           <button onClick={greaterThan13}>13 EUR and more</button>
-           <button onClick={newBookList}>New Book List</button>
-          </header>
+            <header className="App-header">
+                <h1>Koks nors sortas</h1>
+                <div className="kvc">
+                    <select value={select} onChange={e => setSelect(e.target.value)}>
+                        <option value="date_asc">DATE ASC</option>
+                        <option value="date_desc">DATE DESC</option>
+                        <option value="bid_asc">BID ASC</option>
+                        <option value="bid_desc">BID DESC</option>
+                        <option value="name_asc">NAME ASC</option>
+                        <option value="name_desc">NAME DESC</option>
+                        <option value="random">RAND</option>
+                    </select>
+                </div>
+
+                <div>
+                    {
+                        list.map(b => (
+                        <div className="kvc">
+                            <span>ID: {b.id}</span>
+                            <span>Name: {b.name}</span>
+                            <span>BID: {b.bid}</span>
+                            <span>Date: {b.date}</span>
+                        </div>
+                        ))
+                    }
+                    
+                </div>
+            </header>
         </div>
     );
+
+    
 
 }
 
