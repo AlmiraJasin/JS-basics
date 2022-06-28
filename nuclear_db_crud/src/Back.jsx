@@ -28,10 +28,13 @@ function Back() {
   const [createDataGoods, setCreateDataGoods] = useState(null);
   const [deleteDataGoods, setDeleteDataGoods] = useState(null);
 
-
-
   const [message, setMessage] = useState(null);
   const [disableCreate, setDisableCreate] = useState(false);
+
+  /* Sprendimas updatint backoffice kas tris sekundes, bet geriau daryti per serveri, kai serveryje kazkas keiciasi
+  useEffect(() => {
+    setInterval(() => setLastUpdate(Date.now()), 3000)
+  }, []) */
 
 //////////////////TREES?/////////////////////////////
   //Read
@@ -54,8 +57,6 @@ function Back() {
       .then(() => {
         setDisableCreate(false);
       })
-
-
   }, [createData]);
 
   // Delete
@@ -79,7 +80,6 @@ function Back() {
   }, [editData]);
 
 //////////////GOODS//////////////////////
-
 
   // Create
   useEffect(() => {
@@ -109,21 +109,19 @@ function Back() {
         });
     }, [deleteDataGoods]);
 
-
-
-
-
-
-
-
-
-
+    // DELETE COMMENT
+    const handleDeleteComment = id => {
+      axios.delete('http://localhost:3003/komentarai/' + id)
+      .then(res => {
+        showMessage(res.data.msg);
+        setLastUpdate(Date.now());
+      });
+  }
 
   const showMessage = msg => {
     setMessage(msg);
     setTimeout(() => setMessage(null), 5000);
   }
-
 
   return (
     <TreeContext.Provider value={
@@ -137,7 +135,8 @@ function Back() {
         message,
         disableCreate,
         setDisableCreate,
-        goods
+        goods,
+        handleDeleteComment
       }
     }>
     <GoodContext.Provider value={{
@@ -162,7 +161,5 @@ function Back() {
       </GoodContext.Provider>
     </TreeContext.Provider>
   );
-
-
 }
 export default Back;
