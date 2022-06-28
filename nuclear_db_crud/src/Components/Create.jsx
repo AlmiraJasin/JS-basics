@@ -4,19 +4,24 @@ import TreeContext from "./TreeContext";
 
 function Create() {
 
-    const {setCreateData} = useContext(TreeContext);
+    const { setCreateData, disableCreate, setDisableCreate, goods } = useContext(TreeContext);
 
     const [title, setTitle] = useState('');
     const [type, setType] = useState('1');
     const [height, setHeight] = useState('');
+    const [good, setGood] = useState('0');
 
     const handleCreate = () => {
-        const data = {title, type, height};
+        setDisableCreate(true);
+        const data = { title, type, height, good };
         setCreateData(data);
         setTitle('');
         setType('1');
         setHeight('');
+        setGood('0');
     }
+
+    
 
     return (
         <div className="card mt-4">
@@ -39,11 +44,24 @@ function Create() {
                     <small className="form-text text-muted">Select tree type here.</small>
                 </div>
                 <div className="form-group">
+                    <label>Goods</label>
+                    <select className="form-control" onChange={e => setGood(e.target.value)} value={good}>
+                        <option value="0" disabled>Select Goods</option>
+                        {
+                            goods ? goods.map(g => <option key={g.id} value={g.id}>{g.title}</option>) : null
+                        }
+                    </select>
+                    <small className="form-text text-muted">Select nice goody.</small>
+                </div>
+                <div className="form-group">
                     <label>Height</label>
                     <input type="text" className="form-control" onChange={e => setHeight(e.target.value)} value={height} />
                     <small className="form-text text-muted">Enter tree height here.</small>
                 </div>
-                <button type="button" className="btn btn-outline-primary" onClick={handleCreate}>Create</button>
+                <button type="button" className="btn btn-outline-primary with-loader" onClick={handleCreate} disabled={disableCreate}>
+                <span className="spinner-border spinner-border-sm mr-2"></span>
+                <span className="spinner-text">Create</span>
+                </button>
             </div>
         </div>
     );
