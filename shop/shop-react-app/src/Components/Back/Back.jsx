@@ -4,16 +4,13 @@ import CatsCrud from './Cats/Crud';
 import Nav from './Nav';
 import ProductsCrud from './Products/Crud';
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 
 function Back({ show }) {
 
     const [lastUpdate, setLastUpdate] = useState(Date.now());
 
-    const [messages, setMessages] = useState([
-        {id: 4646, text: 'valio', type: 'danger'},
-        {id: 56456, text: 'katinai ateina gert', type: 'info'},
-        {id: 786, text: 'rytoj lis daug lietaus', type: 'success'},
-    ]);
+    const [messages, setMessages] = useState([]);
 
     const [cats, setCats] = useState(null);
     const [createCat, setCreateCat] = useState(null);
@@ -51,12 +48,14 @@ function Back({ show }) {
             })
     }, [deleteCat]);
 
-
-
-    const showMessage = () => {
-
+    const showMessage = (m) => {
+        const id = uuidv4();
+        m.id = id;
+        setMessages(msg => [...msg, m]);
+        setTimeout(() => {
+            setMessages(mes => mes.filter(ms => ms.id !== id))
+        }, 5000)
     }
-
 
     return (
         <BackContext.Provider value={{
