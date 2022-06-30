@@ -18,6 +18,8 @@ function Back({ show }) {
     const [editCat, setEditCat] = useState(null);
     const [modalCat, setModalCat] = useState(null);
 
+    const [createProduct, setCreateProduct] = useState(null)
+
     // Read
     useEffect(() => {
         axios.get('http://localhost:3003/admin/cats')
@@ -27,7 +29,7 @@ function Back({ show }) {
     // Create
     useEffect(() => {
         if (null === createCat) return;
-        axios.post('http://localhost:3003/admin/cats', createCat)
+        axios.post('http://localhost:3003/admin/products', createProduct)
             .then(res => {
                 showMessage(res.data.msg);
                 setLastUpdate(Date.now());
@@ -35,7 +37,7 @@ function Back({ show }) {
             .catch(error => {
                 showMessage({ text: error.message, type: 'danger' });
             })
-    }, [createCat]);
+    }, [createProduct]);
 
     // Delete
     useEffect(() => {
@@ -80,7 +82,8 @@ function Back({ show }) {
             messages,
             setEditCat,
             modalCat,
-            setModalCat
+            setModalCat,
+            setCreateProduct
         }}>
             {
                 show === 'admin' ?
