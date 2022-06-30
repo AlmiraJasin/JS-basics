@@ -32,6 +32,19 @@ app.post("/admin/cats", (req, res) => {
     });
 });
 
+// CREATE
+app.get("/admin/cats", (req, res) => {
+    const sql = `
+    SELECT *
+    FROM cats
+    ORDER BY title
+    `;
+    con.query(sql, (err, result) => {
+        if (err) throw err;
+        res.send(result);
+    });
+});
+
 app.listen(port, () => {
     console.log(`Bebras klauso porto Nr ${port}`);
 });

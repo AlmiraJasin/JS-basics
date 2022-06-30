@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BackContext from './BackContext';
 import CatsCrud from './Cats/Crud';
 import Nav from './Nav';
@@ -10,12 +9,19 @@ function Back({ show }) {
 
     const [lastUpdate, setLastUpdate] = useState(Date.now())
 
+    const [cats, setCats] = useState(null);
     const [createCat, setCreateCat] = useState(null);
+
+    //Read
+    useEffect(() => {
+        axios.get('http://localhost:3003/admin/cats')
+        .then(res => setCats(res.data));
+    }, [lastUpdate])
 
     //Create
     useEffect(() => {
         if (null === createCat) return;
-        axios.post('http://localhost:3000/admin/cats', createCat)
+        axios.post('http://localhost:3003/admin/cats', createCat)
         .then(res => {
             showMessage(res.data.msg)
             setLastUpdate(Date.now());
@@ -31,7 +37,8 @@ function Back({ show }) {
 
     return (
         <BackContext.Provider value={{
-            setCreateCat
+            setCreateCat,
+            cats
         }}>
             {
                 show === 'admin' ?
