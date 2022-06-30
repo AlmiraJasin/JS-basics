@@ -32,18 +32,33 @@ app.post("/admin/cats", (req, res) => {
     });
 });
 
-// CREATE
 app.get("/admin/cats", (req, res) => {
     const sql = `
-    SELECT *
-    FROM cats
-    ORDER BY title
-    `;
+  SELECT *
+  FROM cats
+  ORDER BY title
+`;
     con.query(sql, (err, result) => {
         if (err) throw err;
         res.send(result);
     });
 });
+
+app.delete("/admin/cats/:id", (req, res) => {
+    const sql = `
+    DELETE FROM cats
+    WHERE id = ?
+    `;
+    con.query(sql, [req.params.id], (err, result) => {
+        if (err) throw err;
+        res.send({ result, msg: { text: 'OK, Cat gone', type: 'success' } });
+    });
+});
+
+
+
+
+
 
 app.listen(port, () => {
     console.log(`Bebras klauso porto Nr ${port}`);

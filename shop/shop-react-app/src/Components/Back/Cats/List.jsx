@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import BackContext from "../BackContext";
-import Line from "./Line";
+import { useContext } from 'react';
+import Line from './Line';
+import BackContext from '../BackContext';
 
 function List() {
 
@@ -14,7 +14,7 @@ function List() {
             <div className="card-body">
                 <ul className="list-group">
                     {
-                    cats ? cats.map(tree => <Line key={cats.id} line={cats}></Line>) : null
+                    cats ? cats.map(cat => <Line key={cat.id} line={cat}></Line>) : null
                     }
                 </ul>
             </div>

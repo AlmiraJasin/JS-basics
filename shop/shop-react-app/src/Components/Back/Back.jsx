@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import BackContext from './BackContext';
 import CatsCrud from './Cats/Crud';
 import Nav from './Nav';
@@ -7,29 +7,46 @@ import axios from 'axios';
 
 function Back({ show }) {
 
-    const [lastUpdate, setLastUpdate] = useState(Date.now())
+    const [lastUpdate, setLastUpdate] = useState(Date.now());
+
+    const [mesages, setMessages] = useState([]);
 
     const [cats, setCats] = useState(null);
     const [createCat, setCreateCat] = useState(null);
+    const [deleteCat, setDeleteCat] = useState(null);
 
-    //Read
+    // Read
     useEffect(() => {
         axios.get('http://localhost:3003/admin/cats')
-        .then(res => setCats(res.data));
-    }, [lastUpdate])
+            .then(res => setCats(res.data));
+    }, [lastUpdate]);
 
-    //Create
+    // Create
     useEffect(() => {
         if (null === createCat) return;
         axios.post('http://localhost:3003/admin/cats', createCat)
-        .then(res => {
-            showMessage(res.data.msg)
-            setLastUpdate(Date.now());
-        })
-        .catch(error => {
-            showMessage({ text: error.message, type: 'danger' });
-        })
+            .then(res => {
+                showMessage(res.data.msg);
+                setLastUpdate(Date.now());
+            })
+            .catch(error => {
+                showMessage({ text: error.message, type: 'danger' });
+            })
     }, [createCat]);
+
+    // Delete
+    useEffect(() => {
+        if (null === deleteCat) return;
+        axios.delete('http://localhost:3003/admin/cats/' + deleteCat.id)
+            .then(res => {
+                showMessage(res.data.msg);
+                setLastUpdate(Date.now());
+            })
+            .catch(error => {
+                showMessage({ text: error.message, type: 'danger' });
+            })
+    }, [deleteCat]);
+
 
     const showMessage = () => {
 
@@ -38,7 +55,8 @@ function Back({ show }) {
     return (
         <BackContext.Provider value={{
             setCreateCat,
-            cats
+            cats,
+            setDeleteCat
         }}>
             {
                 show === 'admin' ?
