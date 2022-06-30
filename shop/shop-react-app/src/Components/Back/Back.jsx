@@ -15,6 +15,8 @@ function Back({ show }) {
     const [cats, setCats] = useState(null);
     const [createCat, setCreateCat] = useState(null);
     const [deleteCat, setDeleteCat] = useState(null);
+    const [editCat, setEditCat] = useState(null);
+    const [modalCat, setModalCat] = useState(null);
 
     // Read
     useEffect(() => {
@@ -48,6 +50,19 @@ function Back({ show }) {
             })
     }, [deleteCat]);
 
+    //Edit 
+    useEffect(() => {
+        if (null === editCat) return;
+        axios.put('http://localhost:3003/admin/cats/' + editCat.id, editCat)
+            .then(res => {
+                showMessage(res.data.msg);
+                setLastUpdate(Date.now());
+            })
+            .catch(error => {
+                showMessage({ text: error.message, type: 'danger' });
+            })
+    }, [editCat]);
+
     const showMessage = (m) => {
         const id = uuidv4();
         m.id = id;
@@ -62,7 +77,10 @@ function Back({ show }) {
             setCreateCat,
             cats,
             setDeleteCat,
-            messages
+            messages,
+            setEditCat,
+            modalCat,
+            setModalCat
         }}>
             {
                 show === 'admin' ?
