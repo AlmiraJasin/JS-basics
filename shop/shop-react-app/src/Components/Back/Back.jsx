@@ -18,7 +18,7 @@ function Back({ show }) {
     const [editCat, setEditCat] = useState(null);
     const [modalCat, setModalCat] = useState(null);
 
-    const [createProduct, setCreateProduct] = useState(null)
+    const [createProduct, setCreateProduct] = useState(null);
 
     // Read
     useEffect(() => {
@@ -29,6 +29,17 @@ function Back({ show }) {
     // Create
     useEffect(() => {
         if (null === createCat) return;
+        axios.post('http://localhost:3003/admin/cats', createCat)
+            .then(res => {
+                showMessage(res.data.msg);
+                setLastUpdate(Date.now());
+            })
+            .catch(error => {
+                showMessage({ text: error.message, type: 'danger' });
+            })
+    }, [createCat]);
+    useEffect(() => {
+        if (null === createProduct) return;
         axios.post('http://localhost:3003/admin/products', createProduct)
             .then(res => {
                 showMessage(res.data.msg);
@@ -52,7 +63,8 @@ function Back({ show }) {
             })
     }, [deleteCat]);
 
-    //Edit 
+
+    // Edit
     useEffect(() => {
         if (null === editCat) return;
         axios.put('http://localhost:3003/admin/cats/' + editCat.id, editCat)
@@ -65,14 +77,17 @@ function Back({ show }) {
             })
     }, [editCat]);
 
+
+
     const showMessage = (m) => {
         const id = uuidv4();
         m.id = id;
         setMessages(msg => [...msg, m]);
         setTimeout(() => {
             setMessages(mes => mes.filter(ms => ms.id !== id))
-        }, 5000)
+        }, 5000);
     }
+
 
     return (
         <BackContext.Provider value={{
@@ -81,8 +96,8 @@ function Back({ show }) {
             setDeleteCat,
             messages,
             setEditCat,
-            modalCat,
             setModalCat,
+            modalCat,
             setCreateProduct
         }}>
             {
