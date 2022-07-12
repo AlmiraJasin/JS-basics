@@ -23,7 +23,7 @@ const con = mysql.createConnection({
 });
 
 const doAuth = function(req, res, next) {
-    if (0 === req.url.indexOf('/admin')) {
+    if (0 === req.url.indexOf('/admin')) { // admin
         const sql = `
         SELECT
         name, role
@@ -42,21 +42,53 @@ const doAuth = function(req, res, next) {
                 }
             }
         );
-    } else {
+    } else if (0 === req.url.indexOf('/login-check') || 0 === req.url.indexOf('/login')) {
         next();
+    } else { // fron
+        const sql = `
+        SELECT
+        name, role
+        FROM users
+        WHERE session = ?
+    `;
+        con.query(
+            sql, [req.headers['authorization'] || ''],
+            (err, results) => {
+                if (err) throw err;
+                if (!results.length) {
+                    res.status(401).send({});
+                    req.connection.destroy();
+                } else {
+                    next();
+                }
+            }
+        );
     }
 }
 app.use(doAuth)
 
 // AUTH
 app.get("/login-check", (req, res) => {
-    const sql = `
-    SELECT
-    name
-    FROM users
-    WHERE session = ? AND role = ?
-    `;
-    con.query(sql, [req.headers['authorization'] || '', req.query.role], (err, result) => {
+    let sql;
+    let requests;
+    if (req.query.role === 'admin') {
+        sql = `
+        SELECT
+        name
+        FROM users
+        WHERE session = ? AND role = ?
+        `;
+        requests = [req.headers['authorization'] || '', req.query.role];
+    } else {
+        sql = `
+        SELECT
+        name
+        FROM users
+        WHERE session = ?
+        `;
+        requests = [req.headers['authorization'] || ''];
+    }
+    con.query(sql, requests, (err, result) => {
         if (err) throw err;
         if (!result.length) {
             res.send({ msg: 'error' });
@@ -65,6 +97,7 @@ app.get("/login-check", (req, res) => {
         }
     });
 });
+
 
 app.post("/login", (req, res) => {
     const key = uuid.v4();
@@ -160,6 +193,8 @@ app.get("/admin/products", (req, res) => {
     });
 });
 
+
+
 app.delete("/admin/products/:id", (req, res) => {
     const sql = `
     DELETE FROM products
@@ -192,6 +227,37 @@ app.delete("/admin/photos/:id", (req, res) => {
     con.query(sql, [req.params.id], (err, result) => {
         if (err) throw err;
         res.send({ result, msg: { text: 'OK, photo gone. Have a nice day.', type: 'success' } });
+    });
+});
+
+
+
+// FRONT
+
+app.get("/products", (req, res) => {
+    const sql = `
+  SELECT p.id, price, p.title, c.title AS cat, in_stock, last_update AS lu, photo
+  FROM products AS p
+  LEFT JOIN cats AS c
+  ON c.id = p.cats_id
+  ORDER BY title
+`;
+    con.query(sql, (err, result) => {
+        if (err) throw err;
+        res.send(result);
+    });
+});
+
+
+app.get("/cats", (req, res) => {
+    const sql = `
+  SELECT *
+  FROM cats
+  ORDER BY title
+`;
+    con.query(sql, (err, result) => {
+        if (err) throw err;
+        res.send(result);
     });
 });
 

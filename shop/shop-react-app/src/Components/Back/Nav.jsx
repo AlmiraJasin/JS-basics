@@ -27,7 +27,7 @@ function Nav() {
                                         color: 'crimson'
                                     } : null
                             }>Products</NavLink>
-                            <Link to='/logout'>Logout</Link>
+                            <Link to="/logout">Logout</Link>
                         </nav>
                     </div>
                 </div>

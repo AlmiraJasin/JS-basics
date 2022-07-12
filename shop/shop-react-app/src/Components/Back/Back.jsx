@@ -5,7 +5,7 @@ import Nav from './Nav';
 import ProductsCrud from './Products/Crud';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
-import { authConfig } from '../../Functions/auth';
+import {authConfig} from '../../Functions/auth';
 
 function Back({ show }) {
 
