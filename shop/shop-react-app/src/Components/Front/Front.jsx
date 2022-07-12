@@ -11,12 +11,29 @@ function Front() {
 
     const [products, setProducts] = useState(null);
     const [cats, setCats] = useState(null);
+    const [filter, setFilter] = useState(0);
 
+
+    const [cat, setCat] = useState(0);
+
+
+    const doFilter = cid => {
+        setCat(cid);
+        setFilter(parseInt(cid));
+    }
 
     useEffect(() => {
-        axios.get('http://localhost:3003/products', authConfig())
+        let query;
+        if (filter === 0) {
+            query = '';
+        } else {
+            query = '?cat-id=' + filter
+        }
+
+
+        axios.get('http://localhost:3003/products' + query, authConfig())
             .then(res => setProducts(res.data.map((p, i) => ({...p, row:i}))));
-    }, []);
+    }, [filter]);
 
     useEffect(() => {
         axios.get('http://localhost:3003/cats', authConfig())
@@ -27,7 +44,11 @@ function Front() {
         <FrontContext.Provider value={{
             products,
             setProducts,
-            cats
+            cats,
+            setFilter,
+            cat,
+            setCat,
+            doFilter
         }}>
             <Nav />
             <div className="container">
