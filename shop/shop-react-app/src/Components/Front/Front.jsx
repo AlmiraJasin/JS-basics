@@ -18,6 +18,10 @@ function Front() {
 
     const [search, setSearch] = useState('');
 
+    const [addCom, setAddCom] = useState(null);
+
+    const [lastUpdate, setLastUpdate] = useState(Date.now());
+
 
     const doFilter = cid => {
         setCat(cid);
@@ -36,13 +40,49 @@ function Front() {
 
 
         axios.get('http://localhost:3003/products' + query, authConfig())
-            .then(res => setProducts(res.data.map((p, i) => ({ ...p, row: i }))));
-    }, [filter, search]);
+            .then(res => {
+                const products = new Map();
+                res.data.forEach(p => {
+                    let comment;
+                    if (null === p.com) {
+                        comment = null;
+                    } else {
+                        comment = {id: p.com_id, com: p.com};
+                    }
+                    if (products.has(p.id)) {
+                        const pr = products.get(p.id);
+                        if (comment) {
+                            pr.com.push(comment);
+                        }
+                    } else {
+                        products.set(p.id, {...p});
+                        const pr = products.get(p.id);
+                        pr.com = [];
+                        delete pr.com_id;
+                        if (comment) {
+                            pr.com.push(comment);
+                        }
+                    }
+                });
+                console.log([...products].map(e => e[1]));
+                setProducts([...products].map(e => e[1]).map((p, i) => ({ ...p, row: i })));
+            })
+
+    }, [filter, search, lastUpdate]);
 
     useEffect(() => {
         axios.get('http://localhost:3003/cats', authConfig())
             .then(res => setCats(res.data));
     }, []);
+
+
+    useEffect(() => {
+        if (null === addCom) return;
+        axios.post('http://localhost:3003/comments', addCom, authConfig())
+            .then(res => {
+                setLastUpdate(Date.now());
+            })
+    }, [addCom]);
 
     return (
         <FrontContext.Provider value={{
@@ -53,7 +93,8 @@ function Front() {
             cat,
             setCat,
             doFilter,
-            setSearch
+            setSearch,
+            setAddCom
         }}>
             <Nav />
             <div className="container">
